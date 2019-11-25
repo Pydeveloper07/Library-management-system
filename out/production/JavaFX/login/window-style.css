@@ -1,0 +1,23 @@
+@font-face{
+    src: url("fonts//ConcertOne-Regular.ttf");
+}
+@font-face{
+    src: url("fonts//Baloo-Regular.ttf");
+}
+@font-face{
+    src: url("fonts//Monoton-Regular.ttf");
+}
+@font-face{
+    src: url("fonts//BungeeInline-Regular.ttf");
+}
+.menu-items{
+    -fx-background-color: white;
+    -fx-background-radius: 20px 100px 0px 20px;
+    -fx-font-family: 'Baloo', cursive;
+    -fx-font-size: 18pt;
+}
+#top-label{
+    -fx-font-family: 'Bungee Inline', cursive;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+}
