@@ -1,0 +1,69 @@
+@font-face{
+    src: url("fonts//BalooBhai-Regular.ttf");
+    src: url("fonts//Lobster-Regular.ttf");
+}
+@font-face{
+    src: url("fonts//Righteous-Regular.ttf");
+}
+@font-face{
+    src: url("fonts//FrederickatheGreat-Regular.ttf");
+}
+.main{
+    -fx-background-image: url("images/fon4.jpg");
+}
+.top-panel{
+    -fx-background-color: rgb(235, 235, 235);
+}
+.close-button{
+    -fx-background-color: rgb(245, 28, 0);
+    -fx-font-size: 11pt;
+    -fx-text-fill: rgb(245, 28, 0);
+    -fx-background-radius: 100%;
+}
+.close-button:hover{
+    -fx-text-fill: rgb(0, 0, 0);
+}
+.min-button{
+    -fx-background-color: rgb(245, 179, 0);
+    -fx-font-size: 11pt;
+    -fx-text-fill: rgb(245, 179, 0);
+    -fx-background-radius: 100%;
+}
+.min-button:hover{
+    -fx-text-fill: rgb(0, 0, 0);
+}
+.log-in-title{
+    -fx-font-size: 22pt;
+    -fx-text-fill: rgb(47, 51, 51);
+    -fx-letter-space: 5px;
+    -fx-font-family: 'Baloo Bhai', cursive;
+}
+.pass-and-text-fields{
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius:50px;
+    -fx-font-family: 'Arial';
+}
+.username-and-password{
+    -fx-font-size:14pt;
+    -fx-text-fill: rgb(155, 40, 147);
+    -fx-font-family: 'Fredericka the Great', cursive;
+}
+.log-in-button{
+    -fx-background-color: rgba(0, 255, 0, 0.4);
+    -fx-border-color: rgb(215, 35, 232);
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 13pt;
+    -fx-text-fill: rgba(0, 0, 0, 0.7);
+    -fx-font-family: 'Righteous', cursive;
+}
+
+.log-in-button:hover{
+    -fx-background-color: rgba(0, 121, 33, 1);
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+}
+.window-title{
+    -fx-font-size: 14pt;
+    -fx-text-fill: rgb(41, 41, 41);
+    -fx-font-family: 'Baloo Bhai', cursive;
+}
