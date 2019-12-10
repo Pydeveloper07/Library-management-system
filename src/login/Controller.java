@@ -61,6 +61,7 @@ public class Controller {
         stage.setX(xOffSet + event.getScreenX());
         stage.setY(yOffSet + event.getScreenY());
     }
+    @FXML
     public void loginButtonHandler() throws Exception{
         Stage stage1 = (Stage)minBtn.getScene().getWindow();
         stage1.close();

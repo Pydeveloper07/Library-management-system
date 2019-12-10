@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller2">
@@ -35,7 +36,7 @@
             </Label>
             <FlowPane prefHeight="284.0" prefWidth="318.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
-                  <Button fx:id="homeMenuItem" accessibleRole="MENU_ITEM" mnemonicParsing="false" onMouseClicked="#setHomePane" prefHeight="50.0" prefWidth="316.0" styleClass="menu-items" stylesheets="@window-style.css" text="Home">
+                  <Button fx:id="homeMenuItem" mnemonicParsing="false" onMouseClicked="#setHomePane" prefHeight="50.0" prefWidth="316.0" styleClass="menu-items" stylesheets="@window-style.css" text="Home">
                      <FlowPane.margin>
                         <Insets left="10.0" top="10.0" />
                      </FlowPane.margin>
@@ -57,14 +58,12 @@
                   </Button>
                </children>
             </FlowPane>
-            <ImageView fitHeight="108.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-               <image>
-                  <Image url="@images/avatar-icon-images-4.jpg" />
-               </image>
-               <GridPane.margin>
-                  <Insets bottom="25.0" />
-               </GridPane.margin>
-            </ImageView>
+
+             <Circle fx:id="avatar" onMousePressed="#setAvatar" GridPane.halignment="CENTER" pickOnBounds="true" fill="snow" radius="65.0" stroke="seagreen" strokeType="INSIDE">
+                 <GridPane.margin>
+                     <Insets bottom="25.0" />
+                 </GridPane.margin>
+             </Circle>
          </children>
       </GridPane>
    </left>
