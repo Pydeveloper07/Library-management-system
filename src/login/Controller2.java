@@ -60,7 +60,7 @@ public void initialize() throws MalformedURLException {
     //xAxis.setLabel("Month");
     final LineChart<String,Number> lineChart =
             new LineChart<String,Number>(xAxis,yAxis);
-    lineChart.setTitle("Satatisticcs, 2019");
+    lineChart.setTitle("Statistics, 2019");
 
     XYChart.Series series = new XYChart.Series();
     series.setName("Number of books");
