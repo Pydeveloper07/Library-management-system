@@ -109,7 +109,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="booksPane" style="-fx-background-color: brown;">
+                  <GridPane fx:id="booksPane" onMouseClicked="#addNewBookWindow" style="-fx-background-color: brown;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>

@@ -1,0 +1,14 @@
+#background
+{
+    -fx-background-color:  #ccccff;
+}
+#newBook
+{
+    -fx-font-family: "Elephant";
+    -fx-font-size: 20;
+}
+#label
+{
+    -fx-font-family: "Verdana";
+    -fx-font-size: 15;
+}

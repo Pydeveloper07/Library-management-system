@@ -142,6 +142,22 @@ public void initialize() throws MalformedURLException {
         return resultText;
     }
     @FXML
+    private void addNewBookWindow(){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("BooksForm/BooksForm.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root, 400 , 500));
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Add New Book");
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
     private void addNewUserWindow(){
         Stage stage = new Stage();
         Parent root = null;
