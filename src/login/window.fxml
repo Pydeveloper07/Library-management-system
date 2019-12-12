@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -59,7 +57,7 @@
                </children>
             </FlowPane>
 
-             <Circle fx:id="avatar" onMousePressed="#setAvatar" GridPane.halignment="CENTER" pickOnBounds="true" fill="snow" radius="65.0" stroke="seagreen" strokeType="INSIDE">
+             <Circle fx:id="avatar" fill="snow" onMousePressed="#setAvatar" pickOnBounds="true" radius="65.0" stroke="seagreen" strokeType="INSIDE" GridPane.halignment="CENTER">
                  <GridPane.margin>
                      <Insets bottom="25.0" />
                  </GridPane.margin>
@@ -111,21 +109,6 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="studentsPane" style="-fx-background-color: purple;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" prefHeight="185.0" prefWidth="386.0" text="STUDENTS CONTENT GOES HERE" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </GridPane>
                   <GridPane fx:id="booksPane" style="-fx-background-color: brown;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -135,6 +118,21 @@
                      </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="185.0" prefWidth="386.0" text="BOOKS CONTENT GOES HERE" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="studentsPane" style="-fx-background-color: purple;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" onMouseClicked="#addNewUserWindow" prefHeight="185.0" prefWidth="386.0" text="STUDENTS CONTENT GOES HERE" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
                            <font>
                               <Font size="31.0" />
                            </font>

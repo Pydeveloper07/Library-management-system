@@ -4,7 +4,10 @@ import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.scene.BoundsAccessor;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -20,6 +23,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -53,7 +58,7 @@ public class Controller2 {
 public void initialize() throws MalformedURLException {
 
     //Avatar setting
-    setAvatar();
+    //setAvatar();
 
     final CategoryAxis xAxis = new CategoryAxis();
     final NumberAxis yAxis = new NumberAxis();
@@ -135,6 +140,21 @@ public void initialize() throws MalformedURLException {
             }
         }
         return resultText;
+    }
+    @FXML
+    private void addNewUserWindow(){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("addStudentPopUpWindow.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root, 305 , 370));
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Add New Student");
+        stage.setResizable(false);
+        stage.show();
     }
     @FXML
     private void setAvatar() throws MalformedURLException {
