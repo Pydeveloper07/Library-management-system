@@ -12,7 +12,8 @@ public class BooksFormMain extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("BooksForm.fxml"));
         primaryStage.setTitle("New Book");
-        primaryStage.setScene(new Scene(root, 400, 500));
+        primaryStage.setScene(new Scene(root, 400, 700));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

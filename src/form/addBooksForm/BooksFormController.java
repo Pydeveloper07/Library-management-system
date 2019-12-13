@@ -4,6 +4,7 @@ import dataBase.DBConnector;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -24,8 +25,6 @@ public class BooksFormController implements Initializable {
     @FXML
     TextField title;
     @FXML
-    TextField authorName;
-    @FXML
     TextArea description;
     @FXML
     ImageView photo;
@@ -35,19 +34,26 @@ public class BooksFormController implements Initializable {
     Button ok;
     @FXML
     Button cancel;
-    private DBConnector connector = new DBConnector().getConnector();
+    @FXML
+    ComboBox<String> authorName = new ComboBox<>();
+    @FXML
+    Button addAuthorName;
+    @FXML
+    Button deleteAuthorName;
+    private DBConnector connector = new DBConnector();
 
     PreparedStatement preparedStatement;
     Connection connection;
 
 
     public BooksFormController() throws SQLException {
-        connection = connector.getConnection();
+        connection= connector.getConnection();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        authorName.setPromptText("Author Name");
+        authorName.setEditable(true);
     }
 
     @FXML
@@ -81,6 +87,25 @@ public class BooksFormController implements Initializable {
         faculty.clear();
         contact_num.clear();
         email.clear();*/
+    }
+
+    public void handleAdd() {
+        boolean exists = false;
+        for (Object obj: authorName.getItems()){
+            if(obj.toString() == authorName.getValue()) {
+                exists = true;
+                break;
+            }
+        }
+        if(!exists){
+            authorName.getItems().add(authorName.getValue());
+            authorName.setValue("");
+        }
+    }
+
+    public void handleDelete() {
+        authorName.getItems().remove(authorName.getValue());
+        authorName.setValue("");
     }
 
     public void cancelButtonHandler()
