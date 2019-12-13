@@ -11,12 +11,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("loginPage/logInPage.fxml"));
         stage.setScene(new Scene(root, 608 , 690));
         stage.initStyle(StageStyle.UNDECORATED);
-//        Parent root = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
-//        stage.setScene(new Scene(root, 1144 , 622));
         stage.show();
     }
     public static void main(String[] args){
         launch(args);
     }
-    // test
 }

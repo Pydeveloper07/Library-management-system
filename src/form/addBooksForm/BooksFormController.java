@@ -35,13 +35,14 @@ public class BooksFormController implements Initializable {
     Button ok;
     @FXML
     Button cancel;
+    private DBConnector connector = new DBConnector().getConnector();
 
     PreparedStatement preparedStatement;
     Connection connection;
 
 
     public BooksFormController() throws SQLException {
-        connection= DBConnector.getConnection();
+        connection = connector.getConnection();
     }
 
     @Override

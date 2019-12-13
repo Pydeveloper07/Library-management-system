@@ -11,14 +11,19 @@ public class DBConnector {
     private static final String USERNAME = "java_masters";
     private static final String PASSWORD = "forever";
 
-    private Connection connection; // manages connection
-    private PreparedStatement selectAllPeople;
-    private PreparedStatement selectPeopleByLastName;
-    private PreparedStatement insertNewPerson;
+    private Connection connection = null; // manages connection
+    private DBConnector connector = null;
 
-    public static Connection getConnection() throws SQLException {
-        Connection connection= DriverManager.getConnection(URL,USERNAME,PASSWORD);
+    public Connection getConnection() throws SQLException {
+        if(connection == null){
+            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        }
         return connection;
     }
-
+    public DBConnector getConnector(){
+        if(connector == null){
+            connector = new DBConnector();
+        }
+        return connector;
+    }
 }

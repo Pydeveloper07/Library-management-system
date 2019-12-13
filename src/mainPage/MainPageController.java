@@ -1,5 +1,6 @@
 package mainPage;
 
+import WindowLoader.WindowLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MainPageController {
+    private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
     @FXML
     private Label topLabel;
     @FXML
@@ -150,18 +152,7 @@ public void initialize() throws MalformedURLException {
 
     @FXML
     private void addNewUserWindow(){
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("../form/addStudentsForm/StudentForm.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(new Scene(root, 305 , 370));
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("Add New Student");
-        stage.setResizable(false);
-        stage.show();
+        windowLoader.loadAddNewUserWindow();
     }
     @FXML
     private void setAvatar() throws MalformedURLException {

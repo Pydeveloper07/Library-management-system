@@ -19,7 +19,6 @@ public class StudentFormController implements Initializable {
     private Button cancelBtn;
     @FXML
     private ComboBox<String> facultyCombo = new ComboBox<>();
-
     @FXML
     TextField id;
     @FXML
@@ -32,13 +31,14 @@ public class StudentFormController implements Initializable {
     TextField email;
     @FXML
     TextField password;
+    private DBConnector connector = new DBConnector().getConnector();
 
     PreparedStatement preparedStatement;
     Connection connection;
 
 
     public StudentFormController() throws SQLException {
-        connection= DBConnector.getConnection();
+        connection = connector.getConnection();
     }
 
     @FXML
