@@ -68,12 +68,12 @@ public class StudentFormController implements Initializable {
         }
     }
     private void clearFields() {
-        id.clear();
-        name.clear();
-        surname.clear();
-        contact_number.clear();
-        email.clear();
-        password.clear();
+//        id.clear();
+//        name.clear();
+//        surname.clear();
+//        contact_number.clear();
+//        email.clear();
+//        password.clear();
     }
 
 
@@ -82,11 +82,6 @@ public class StudentFormController implements Initializable {
         facultyCombo.getItems().addAll("CSE", "ICE", "SOL");
         facultyCombo.setPromptText("CSE");
     }
-
-
-
-
-
     public void cancelButtonHandler()
     {
         ((Stage)cancelBtn.getScene().getWindow()).close();

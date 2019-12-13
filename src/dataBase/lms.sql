@@ -6,7 +6,7 @@ last_name VARCHAR(20) NOT NULL,
 faculty VARCHAR(15) NOT NULL,
 contact_number VARCHAR(13),
 email VARCHAR(30),
-password_code VARCHAR(30)NOT NULL,
+password_code VARCHAR(15)NOT NULL,
 PRIMARY KEY(student_id)
 );
 CREATE TABLE authors(
@@ -17,7 +17,7 @@ PRIMARY KEY(author_id)
 );
 CREATE TABLE book_group(
 isbn INT NOT NULL,
-description VARCHAR(40),
+descrip VARCHAR(40),
 title VARCHAR(30) NOT NULL,
 quantity INT NOT NULL DEFAULT 0,
 available INT NOT NULL DEFAULT 0,

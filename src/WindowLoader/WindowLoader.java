@@ -18,9 +18,16 @@ public class WindowLoader {
         }
         return windowLoader;
     }
-    public void loadMainWindow() throws Exception{
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../mainPage/mainPage.fxml"));
+    public void loadMainWindow(){
+        Stage stage = null;
+        Parent root = null;
+        try{
+            stage = new Stage();
+            root = FXMLLoader.load(getClass().getResource("../mainPage/mainPage.fxml"));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
         stage.setScene(new Scene(root, 1144 , 622));
         stage.show();
     }

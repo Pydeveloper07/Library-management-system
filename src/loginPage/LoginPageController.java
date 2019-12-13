@@ -1,5 +1,6 @@
 package loginPage;
 
+import dataBase.DBConnector;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,8 @@ public class LoginPageController {
     private double xOffSet;
     private double yOffSet;
     private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
+    private DBConnector connector = new DBConnector().getConnector();
+    private Connection connection;
     @FXML
     Label pleaseLoginLabel;
     @FXML
@@ -63,52 +66,58 @@ public class LoginPageController {
         stage.setX(xOffSet + event.getScreenX());
         stage.setY(yOffSet + event.getScreenY());
     }
+    private void resetLoginInputs(){
+        passwordField.clear();
+        textField.clear();
+        passwordField.setStyle("-fx-border-color:red;");
+        textField.setStyle("-fx-border-color:red;");
+        warnLabel1.setVisible(true);
+        warnLabel2.setVisible(true);
+    }
     public void loginButtonHandler(){
-        final String DATABASE_URL = "jdbc:derby:C:\\Users\\User\\JavaPrograms\\mubina\\src\\lms";
-        final String USERNAME = "java_masters";
-        final String PASSWORD = "forever";
-        final String QUERY = "SELECT password_code FROM students WHERE student_id=? " +
-                "UNION SELECT password_code FROM librarian WHERE librarian_id=? " +
-                "UNION SELECT password_code FROM admin_table WHERE admin_id=?";
-
-        try(
-                Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
-        ){
-            PreparedStatement getPersonById = connection.prepareStatement(QUERY);
+        try{
+            connection = connector.getConnection();
+            PreparedStatement getStudentById = connection.prepareStatement("SELECT password_code FROM students WHERE student_id=?");
+            PreparedStatement getLibrarianById = connection.prepareStatement("SELECT password_code FROM librarian WHERE librarian_id=?");
+            PreparedStatement getAdminById = connection.prepareStatement("SELECT password_code FROM admin_table WHERE admin_id=?");
             String id;
             try {
                 id = textField.getText();
-                getPersonById.setString(1, id);
-                getPersonById.setString(2, id);
-                getPersonById.setString(3, id);
+                getStudentById.setString(1, id);
+                getLibrarianById.setString(1, id);
+                getAdminById.setString(1, id);
             }
             catch(Exception ex){
-                passwordField.setText("");
-                textField.setText("");
-                textField.setStyle("-fx-border-color:red;");
+                resetLoginInputs();
             }
-            ResultSet resultSet = getPersonById.executeQuery();
-            resultSet.next();
-            if((String.valueOf(resultSet.getString("password_code")).equals(passwordField.getText())))
-                accessMainWindow();
+            ResultSet resultSet1 = getStudentById.executeQuery();
+            ResultSet resultSet2 = getLibrarianById.executeQuery();
+            ResultSet resultSet3 = getAdminById.executeQuery();
+            Stage stage1 = (Stage)minBtn.getScene().getWindow();
+            if(resultSet1.next()){
+                if((String.valueOf(resultSet1.getString("password_code")).equals(passwordField.getText()))){
+                    stage1.close();
+                    windowLoader.loadMainWindow();
+                }
+            }
+            else if(resultSet2.next()){
+                if((String.valueOf(resultSet2.getString("password_code")).equals(passwordField.getText()))){
+                    stage1.close();
+                    windowLoader.loadMainWindow();
+                }
+
+            }
             else{
-                passwordField.clear();
-                textField.clear();
-                passwordField.setStyle("-fx-border-color:red;");
-                textField.setStyle("-fx-border-color:red;");
-                warnLabel1.setVisible(true);
-                warnLabel2.setVisible(true);
+                resultSet3.next();
+                if((String.valueOf(resultSet3.getString("password_code")).equals(passwordField.getText()))){
+                    stage1.close();
+                    windowLoader.loadMainWindow();
+                }
             }
+            resetLoginInputs();
+            connection.close();
         }
-        catch (SQLException ex){
-            passwordField.clear();
-            textField.clear();
-            passwordField.setStyle("-fx-border-color:red;");
-            textField.setStyle("-fx-border-color:red;");
-            warnLabel1.setVisible(true);
-            warnLabel2.setVisible(true);
-        }
-        catch(Exception ex){
+        catch(SQLException ex){
             ex.printStackTrace();
         }
     }
