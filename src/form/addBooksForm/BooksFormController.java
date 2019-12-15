@@ -40,7 +40,7 @@ public class BooksFormController implements Initializable {
     Button addAuthorName;
     @FXML
     Button deleteAuthorName;
-    private DBConnector connector = new DBConnector();
+    private DBConnector connector = new DBConnector().getConnector();
 
     PreparedStatement preparedStatement;
     Connection connection;

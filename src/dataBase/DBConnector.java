@@ -2,7 +2,6 @@ package dataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBConnector {
@@ -13,11 +12,8 @@ public class DBConnector {
 
     private Connection connection = null; // manages connection
     private DBConnector connector = null;
-
     public Connection getConnection() throws SQLException {
-        if(connection == null){
-            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-        }
+        connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
         return connection;
     }
     public DBConnector getConnector(){

@@ -97,33 +97,27 @@ public class LoginPageController {
             if(resultSet1.next()){
                 if((String.valueOf(resultSet1.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
-                    windowLoader.loadMainWindow();
+                    windowLoader.loadMainWindow(2);
                 }
             }
             else if(resultSet2.next()){
                 if((String.valueOf(resultSet2.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
-                    windowLoader.loadMainWindow();
+                    windowLoader.loadMainWindow(1);
                 }
 
             }
-            else{
-                resultSet3.next();
+            else if(resultSet3.next()){
                 if((String.valueOf(resultSet3.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
-                    windowLoader.loadMainWindow();
+                    windowLoader.loadMainWindow(0);
                 }
             }
-            resetLoginInputs();
             connection.close();
+            resetLoginInputs();
         }
         catch(SQLException ex){
             ex.printStackTrace();
         }
-    }
-    public void accessMainWindow() throws Exception{
-        Stage stage1 = (Stage)minBtn.getScene().getWindow();
-        stage1.close();
-        windowLoader.loadMainWindow();
     }
 }
