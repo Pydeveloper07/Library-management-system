@@ -173,7 +173,7 @@
                         </BorderPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="studentsPane" style="-fx-background-color: grey;">
+                  <GridPane fx:id="booksPane" style="-fx-background-color: brown;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -184,25 +184,25 @@
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
                               <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                        <children>
-                                          <Button mnemonicParsing="false" onMouseClicked="#addNewUserWindow" prefHeight="26.0" prefWidth="70.0" text="New">
+                                          <Button fx:id="newBookBtn" mnemonicParsing="false" onMouseClicked="#addNewBookWindow" prefHeight="26.0" prefWidth="70.0" text="New">
                                              <HBox.margin>
                                                 <Insets left="25.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
+                                          <Button fx:id="deleteBookBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>
@@ -238,7 +238,7 @@
                         </BorderPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="booksPane" style="-fx-background-color: brown;">
+                  <GridPane fx:id="studentsPane" style="-fx-background-color: grey;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -246,28 +246,28 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <BorderPane fx:id="studentsBorderPane" prefHeight="200.0" prefWidth="200.0">
                            <top>
                               <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
-                                 <columnConstraints>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                        <children>
-                                          <Button fx:id="newBookBtn" mnemonicParsing="false" onMouseClicked="#addNewBookWindow" prefHeight="26.0" prefWidth="70.0" text="New">
+                                          <Button mnemonicParsing="false" onMouseClicked="#addNewUserWindow" prefHeight="26.0" prefWidth="70.0" text="New">
                                              <HBox.margin>
                                                 <Insets left="25.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="deleteBookBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
+                                          <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>

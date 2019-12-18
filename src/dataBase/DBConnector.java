@@ -1,12 +1,14 @@
 package dataBase;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnector {
-
-    private static final String URL = "jdbc:derby:classpath:dataBase/lms";
+    private static File f = new File("src/dataBase/lms.sql");
+    private static String absolutePath = f.getAbsolutePath();
+    private static final String URL = "jdbc:derby:" + getAbsolutePath();
     private static final String USERNAME = "java_masters";
     private static final String PASSWORD = "forever";
 
@@ -21,5 +23,9 @@ public class DBConnector {
             connector = new DBConnector();
         }
         return connector;
+    }
+    private static String getAbsolutePath(){
+        int length = absolutePath.length();
+        return absolutePath.substring(0, length - 4);
     }
 }

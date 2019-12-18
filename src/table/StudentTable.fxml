@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="table.StudentTableController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="126.0" text="Button">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TableView fx:id="table" prefHeight="358.0" prefWidth="510.0" stylesheets="@StudentTable.css" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="col_id" prefWidth="80.0" text="id" />
+          <TableColumn fx:id="col_name" prefWidth="135.0" text="name" />
+          <TableColumn fx:id="col_surname" prefWidth="180.0" text="surname" />
+          <TableColumn fx:id="col_faculty" prefWidth="55.0" text="faculty" />
+          <TableColumn fx:id="col_contact_num" prefWidth="130.0" text="contact" />
+          <TableColumn fx:id="col_email" prefWidth="220.0" text="email" />
+          <TableColumn fx:id="col_pass" prefWidth="100.0" text="password" />
+        </columns>
+      </TableView>
+   </center>
+   <padding>
+      <Insets top="25.0" />
+   </padding>
+</BorderPane>

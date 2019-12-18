@@ -1,8 +1,10 @@
 package mainPage;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
@@ -14,6 +16,15 @@ public class MainController {
             mainController = new MainController();
         }
         return mainController;
+    }
+    public void initializeStudentTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/StudentTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
     public void setPane(MouseEvent event, GridPane pane, ArrayList<Button> buttons, Label topLabel){
         pane.toFront();

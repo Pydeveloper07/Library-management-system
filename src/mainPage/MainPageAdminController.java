@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -43,11 +44,16 @@ public class MainPageAdminController {
     @FXML
     private GridPane statisticsPane;
     @FXML
+    private BorderPane studentsBorderPane;
+    @FXML
     private Circle avatar;
+    @FXML
+
 public void initialize() throws MalformedURLException {
 
     //Avatar setting
     //setAvatar();
+    mainController.initializeStudentTable(studentsBorderPane);
     windowLoader.loadLineChart(statisticsPane);
     buttons.add(homeMenuItem);
     buttons.add(librariansMenuItem);

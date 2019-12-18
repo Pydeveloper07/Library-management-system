@@ -46,7 +46,7 @@ public class WindowLoader {
         catch(IOException ex){
             ex.printStackTrace();
         }
-        stage.setScene(new Scene(root, 1144 , 622));
+        stage.setScene(new Scene(root, 1250 , 622));
         stage.show();
     }
     public void loadAddNewUserWindow(){
