@@ -1,12 +1,14 @@
 @font-face{
-    src: url("fonts//BalooBhai-Regular.ttf");
-    src: url("fonts//Lobster-Regular.ttf");
+    src: url('fonts//BalooBhai-Regular.ttf');
 }
 @font-face{
-    src: url("fonts//Righteous-Regular.ttf");
+    src: url('fonts//Lobster-Regular.ttf');
 }
 @font-face{
-    src: url("fonts//FrederickatheGreat-Regular.ttf");
+    src: url('fonts//Righteous-Regular.ttf');
+}
+@font-face{
+    src: url('fonts//FrederickatheGreat-Regular.ttf');
 }
 .main{
     -fx-background-image: url("images/fon4.jpg");

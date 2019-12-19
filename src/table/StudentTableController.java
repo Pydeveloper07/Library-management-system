@@ -3,12 +3,12 @@ package table;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -32,6 +32,8 @@ public class StudentTableController implements Initializable {
     private TableColumn<ModelTable, String> col_contact_num;
     @FXML
     private TableColumn<ModelTable, String> col_email;
+    @FXML
+    private TextField filter;
 
     private DBConnector connector = new DBConnector().getConnector();
 
@@ -194,5 +196,33 @@ public class StudentTableController implements Initializable {
         );
         table.setEditable(true);
         table.setItems(oblist);
+
+        FilteredList<ModelTable> filteredData = new FilteredList<>(oblist, b -> true);
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String upperCaseFilter = newValue.toUpperCase();
+
+                if (person.getId().toUpperCase().indexOf(upperCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                } else if (person.getName().toUpperCase().indexOf(upperCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                }
+                else if (person.getSurname().toUpperCase().indexOf(upperCaseFilter)!=-1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<ModelTable> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+
     }
+
+
+
 }

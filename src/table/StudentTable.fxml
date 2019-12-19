@@ -3,22 +3,33 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1401.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="table.StudentTableController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="table.StudentTableController">
    <center>
       <TableView fx:id="table" prefHeight="503.0" prefWidth="872.0" stylesheets="@StudentTable.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="col_id" prefWidth="225.60003358125687" text="Student ID" />
-          <TableColumn fx:id="col_name" prefWidth="210.40003967285156" text="First Name" />
-          <TableColumn fx:id="col_surname" prefWidth="210.39996337890625" text="Last Name" />
-          <TableColumn fx:id="col_faculty" prefWidth="236.800048828125" text="Faculty" />
-          <TableColumn fx:id="col_contact_num" prefWidth="212.0" text="Contact number" />
-          <TableColumn fx:id="col_email" minWidth="0.0" prefWidth="303.1999755859374" text="E-mail" />
+          <TableColumn fx:id="col_id" prefWidth="100" text="Student ID" />
+          <TableColumn fx:id="col_name" prefWidth="200.0" text="First Name" />
+          <TableColumn fx:id="col_surname" prefWidth="232" text="Last Name" />
+          <TableColumn fx:id="col_faculty" prefWidth="65" text="Faculty" />
+          <TableColumn fx:id="col_contact_num" prefWidth="232" text="Contact number" />
+          <TableColumn fx:id="col_email" minWidth="150.0" prefWidth="232.0" text="E-mail" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </center>
    <padding>
-      <Insets top="25.0" />
+      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
    </padding>
+   <top>
+      <TextField fx:id="filter" prefHeight="25.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </TextField>
+   </top>
 </BorderPane>
