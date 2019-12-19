@@ -15,7 +15,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1131.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <GridPane prefHeight="522.0" prefWidth="317.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="522.0" prefWidth="317.0" style="-fx-background-color: #e6eeff;" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -25,7 +25,7 @@
             <RowConstraints maxHeight="169.60001220703126" minHeight="10.0" prefHeight="71.19998779296876" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="243.0" text="Tukhtamurod Isroilov" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Label fx:id="labelUserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="243.0" text="Tukhtamurod Isroilov" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
@@ -72,25 +72,26 @@
       </GridPane>
    </left>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="256.59999694824216" minHeight="10.0" prefHeight="60.79999694824219" vgrow="NEVER" />
-          <RowConstraints maxHeight="800.9999946594238" minHeight="10.0" prefHeight="462.40000305175784" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <GridPane GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="814.0" style="-fx-background-color: #00b300;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label id="top-label" fx:id="topLabel" alignment="CENTER" prefHeight="60.0" prefWidth="903.0" stylesheets="@window-style.css" text="HOME" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Bodoni MT" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
                <children>
                   <GridPane fx:id="homePane" style="-fx-background-color: white;">
                     <columnConstraints>
@@ -108,137 +109,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <GridPane fx:id="librariansPane" style="-fx-background-color: purple;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <top>
-                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="New">
-                                             <HBox.margin>
-                                                <Insets left="25.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                    <TextField prefHeight="26.0" prefWidth="129.0" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="117.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Search" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets top="25.0" />
-                                 </padding>
-                              </GridPane>
-                           </top>
-                        </BorderPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="booksPane" style="-fx-background-color: brown;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <top>
-                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
-                                       <children>
-                                          <Button fx:id="newBookBtn" mnemonicParsing="false" onMouseClicked="#addNewBookWindow" prefHeight="26.0" prefWidth="70.0" text="New">
-                                             <HBox.margin>
-                                                <Insets left="25.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button fx:id="deleteBookBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                    <TextField prefHeight="26.0" prefWidth="129.0" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="117.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Search" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets top="25.0" />
-                                 </padding>
-                              </GridPane>
-                           </top>
-                        </BorderPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="studentsPane" style="-fx-background-color: grey;">
+                  <GridPane fx:id="studentsPane" style="-fx-background-color: #ccccb3;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -248,7 +119,7 @@
                      <children>
                         <BorderPane fx:id="studentsBorderPane" prefHeight="200.0" prefWidth="200.0">
                            <top>
-                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
+                              <GridPane prefHeight="107.0" prefWidth="794.0" BorderPane.alignment="CENTER">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -256,18 +127,95 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="35.79999389648438" minHeight="10.0" prefHeight="29.39998474121094" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="53.400015258789054" minHeight="10.0" prefHeight="53.400015258789054" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                        <children>
-                                          <Button mnemonicParsing="false" onMouseClicked="#addNewUserWindow" prefHeight="26.0" prefWidth="70.0" text="New">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#addNewUserWindow" prefHeight="26.0" prefWidth="70.0" text="New">
                                              <HBox.margin>
-                                                <Insets left="25.0" />
+                                                <Insets />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TextField prefHeight="37.0" prefWidth="150.0" promptText="Student ID" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField prefHeight="26.0" prefWidth="117.0" promptText="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="First Name" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="178.0" text="Search" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets top="25.0" />
+                                 </padding>
+                              </GridPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="librariansPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="New">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>
@@ -278,22 +226,129 @@
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
                                        </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
                                     </TextField>
                                     <TextField prefHeight="26.0" prefWidth="117.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
                                        </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
                                     </TextField>
                                     <TextField prefHeight="26.0" prefWidth="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
                                        </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
                                     </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Search" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                    <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="195.0" text="Search" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="20.0" top="20.0" />
                                        </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
                                     </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets top="25.0" />
+                                 </padding>
+                              </GridPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5">
+                                       <children>
+                                          <Button fx:id="newBookBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#addNewBookWindow" prefHeight="26.0" prefWidth="70.0" text="New">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="deleteBookBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TextField prefHeight="26.0" prefWidth="129.0" promptText="Title" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField prefHeight="26.0" prefWidth="117.0" promptText="Published Date" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="ISBN" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="194.0" text="Search" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </GridPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="Author" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="Subject" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                       <GridPane.margin>
+                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
                                  </children>
                                  <padding>
                                     <Insets top="25.0" />
@@ -305,19 +360,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: rgb(16, 182, 5);" GridPane.halignment="CENTER">
-               <children>
-                  <Label id="top-label" fx:id="topLabel" alignment="CENTER" prefHeight="60.0" prefWidth="903.0" stylesheets="@window-style.css" text="HOME" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="Bodoni MT" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </HBox>
-         </children>
-      </GridPane>
+         </center>
+      </BorderPane>
    </center>
 </fx:root>

@@ -48,9 +48,10 @@ public class MainPageAdminController {
     @FXML
     private Circle avatar;
     @FXML
+    private Label labelUserName;
 
 public void initialize() throws MalformedURLException {
-
+    mainController.loadUserDetails(labelUserName, avatar);
     //Avatar setting
     //setAvatar();
     mainController.initializeStudentTable(studentsBorderPane);

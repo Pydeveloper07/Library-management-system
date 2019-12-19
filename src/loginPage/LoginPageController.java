@@ -77,9 +77,9 @@ public class LoginPageController {
     public void loginButtonHandler(){
         try{
             connection = connector.getConnection();
-            PreparedStatement getStudentById = connection.prepareStatement("SELECT password_code FROM students WHERE student_id=?");
-            PreparedStatement getLibrarianById = connection.prepareStatement("SELECT password_code FROM librarian WHERE librarian_id=?");
-            PreparedStatement getAdminById = connection.prepareStatement("SELECT password_code FROM admin_table WHERE admin_id=?");
+            PreparedStatement getStudentById = connection.prepareStatement("SELECT student_id, first_name, last_name, password_code FROM students WHERE student_id=?");
+            PreparedStatement getLibrarianById = connection.prepareStatement("SELECT librarian_id, first_name, last_name, password_code FROM librarian WHERE librarian_id=?");
+            PreparedStatement getAdminById = connection.prepareStatement("SELECT admin_id, first_name, last_name, password_code FROM admin_table WHERE admin_id=?");
             String id;
             try {
                 id = textField.getText();
@@ -97,12 +97,14 @@ public class LoginPageController {
             if(resultSet1.next()){
                 if((String.valueOf(resultSet1.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
+                    initUser(resultSet1);
                     windowLoader.loadMainWindow(2);
                 }
             }
             else if(resultSet2.next()){
                 if((String.valueOf(resultSet2.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
+                    initUser(resultSet2);
                     windowLoader.loadMainWindow(1);
                 }
 
@@ -110,6 +112,7 @@ public class LoginPageController {
             else if(resultSet3.next()){
                 if((String.valueOf(resultSet3.getString("password_code")).equals(passwordField.getText()))){
                     stage1.close();
+                    initUser(resultSet3);
                     windowLoader.loadMainWindow(0);
                 }
             }
@@ -119,5 +122,11 @@ public class LoginPageController {
         catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+    public void initUser(ResultSet resultSet) throws SQLException{
+        String password = resultSet.getString("password_code");
+        String firstName = resultSet.getString("first_name");
+        String lastName = resultSet.getString("last_name");
+        UserSession.setInstance(new UserSession(textField.getText(), firstName, lastName));
     }
 }

@@ -21,21 +21,17 @@ public class StudentTableController implements Initializable {
     @FXML
     private TableView<ModelTable> table;
     @FXML
-    private TableColumn<ModelTable,String> col_id;
+    private TableColumn<ModelTable, String> col_id;
     @FXML
-    private TableColumn<ModelTable,String> col_name;
+    private TableColumn<ModelTable, String> col_name;
     @FXML
-    private TableColumn<ModelTable,String> col_surname;
+    private TableColumn<ModelTable, String> col_surname;
     @FXML
-    private TableColumn<ModelTable,String> col_faculty;
+    private TableColumn<ModelTable, String> col_faculty;
     @FXML
-    private TableColumn<ModelTable,String> col_contact_num;
+    private TableColumn<ModelTable, String> col_contact_num;
     @FXML
-    private TableColumn<ModelTable,String> col_email;
-    @FXML
-    private TableColumn<ModelTable,String> col_pass;
-    @FXML
-    private Button search;
+    private TableColumn<ModelTable, String> col_email;
 
     private DBConnector connector = new DBConnector().getConnector();
 
@@ -43,41 +39,20 @@ public class StudentTableController implements Initializable {
 
     PreparedStatement preparedStatement;
     Connection connection;
-    public void search(){
-        try
-        {
-            connection = connector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE students SET first_name=? WHERE students.student_id=?");
-
-            statement.setString(1, "John");
-            statement.setString(2, "U1810001");
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-        }
-       catch(SQLException ex){
-        ex.printStackTrace();
-       }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
         try {
             connection = connector.getConnection();
-            ResultSet resultSet=connection.createStatement().executeQuery("SELECT * FROM students");
-            while (resultSet.next()){
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM students");
+            while (resultSet.next()) {
                 oblist.add(new ModelTable(
                         resultSet.getString("student_id"),
                         resultSet.getString("first_name"),
                         resultSet.getString("last_name"),
                         resultSet.getString("faculty"),
                         resultSet.getString("contact_number"),
-                        resultSet.getString("email"),
-                        resultSet.getString("password_code")));
+                        resultSet.getString("email")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -114,7 +89,6 @@ public class StudentTableController implements Initializable {
         );
 
 
-
         col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         col_surname.setCellFactory(TextFieldTableCell.forTableColumn());
         col_surname.setOnEditCommit(
@@ -145,26 +119,26 @@ public class StudentTableController implements Initializable {
         col_faculty.setCellFactory(TextFieldTableCell.forTableColumn());
         col_faculty.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ModelTable, String>>() {
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<ModelTable, String> t) {
-                            ModelTable modelTable = table.getSelectionModel().getSelectedItem();
-                            ((ModelTable) t.getTableView().getItems().get(
-                                    t.getTablePosition().getRow())
-                            ).setFaculty(t.getNewValue());
-                            try {
-                                connection = connector.getConnection();
-                                PreparedStatement statement = connection.prepareStatement(
-                                        "UPDATE students SET faculty=? WHERE student_id=?");
-                                statement.setString(1, modelTable.getFaculty());
-                                statement.setString(2, modelTable.getId());
-                                statement.executeUpdate();
-                                statement.close();
-                                connection.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<ModelTable, String> t) {
+                        ModelTable modelTable = table.getSelectionModel().getSelectedItem();
+                        ((ModelTable) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setFaculty(t.getNewValue());
+                        try {
+                            connection = connector.getConnection();
+                            PreparedStatement statement = connection.prepareStatement(
+                                    "UPDATE students SET faculty=? WHERE student_id=?");
+                            statement.setString(1, modelTable.getFaculty());
+                            statement.setString(2, modelTable.getId());
+                            statement.executeUpdate();
+                            statement.close();
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
                         }
                     }
+                }
         );
 
         col_contact_num.setCellValueFactory(new PropertyValueFactory<>("contact_num"));
@@ -218,34 +192,6 @@ public class StudentTableController implements Initializable {
                     }
                 }
         );
-
-        col_pass.setCellValueFactory(new PropertyValueFactory<>("password"));
-        col_pass.setCellFactory(TextFieldTableCell.forTableColumn());
-        col_pass.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<ModelTable, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<ModelTable, String> t) {
-                        ModelTable modelTable = table.getSelectionModel().getSelectedItem();
-                        ((ModelTable) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setPassword(t.getNewValue());
-                        try {
-                            connection = connector.getConnection();
-                            PreparedStatement statement = connection.prepareStatement(
-                                    "UPDATE students SET password_code=? WHERE student_id=?");
-                            statement.setString(1, modelTable.getPassword());
-                            statement.setString(2, modelTable.getId());
-                            statement.executeUpdate();
-                            statement.close();
-                            connection.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-        );
-
-
         table.setEditable(true);
         table.setItems(oblist);
     }

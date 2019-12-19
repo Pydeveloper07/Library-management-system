@@ -46,7 +46,9 @@ public class WindowLoader {
         catch(IOException ex){
             ex.printStackTrace();
         }
-        stage.setScene(new Scene(root, 1250 , 622));
+        stage.setScene(new Scene(root));
+        stage.setMaximized(true);
+        stage.setTitle("IUT Library Management System");
         stage.show();
     }
     public void loadAddNewUserWindow(){

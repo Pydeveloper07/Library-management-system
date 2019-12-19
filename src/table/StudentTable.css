@@ -1,13 +1,18 @@
+@font-face{
+    src: url("..//fonts//Baloo-Regular.ttf");
+}
+
 .table-view{
-    -fx-background-color:#474747;
-    -fx-background-radius:30;
+    -fx-background-radius:0;
     -fx-fill:white;
 }
 .table-view .column-header-background {
-    -fx-background-color:#575757;
-    -fx-background-radius:30;
+    -fx-background-color:#00cc00;
+    -fx-background-radius:10px 10px 0 0;
     -fx-background-insets:0 0 5 0;
     -fx-padding: 0 0 10 0;
+    -fx-font-size:1.3em;
+    -fx-font-weight:bold;
 }
 .table-view .column-header, .table-view .filler {
     -fx-size:40;
@@ -20,19 +25,25 @@
     -fx-text-fill:white;
 }
 .table-view .table-cell{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-table-cell-border-color, #616161;
+    -fx-font-family: 'Baloo', cursive;
+    -fx-font-size: 1.3em;
+    -fx-padding:0 0 0 10px;
 }
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-color: #ebebe0;
+    -fx-table-cell-border-color, #424242;
+    -fx-font-family: 'Baloo', cursive;
+    -fx-font-size: 1.3em;
+    -fx-padding:0 0 0 10px;
 }
 
 .table-row-cell:hover {
-    -fx-background-color: green;
+    -fx-background-color: #b3d1ff;
 }
-
 .table-row-cell:selected {
-    -fx-background-color: red;
+    -fx-background-color: #66a3ff;
 }
