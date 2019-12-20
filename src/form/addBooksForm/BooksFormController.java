@@ -1,15 +1,16 @@
 package form.addBooksForm;
 
 import dataBase.DBConnector;
+import getJSON.Send_HTTP_Request;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,17 +30,17 @@ public class BooksFormController implements Initializable {
     @FXML
     ImageView photo;
     @FXML
-    Button attach;
-    @FXML
-    Button ok;
-    @FXML
     Button cancel;
+    @FXML
+    Spinner<Integer> spinner = new Spinner<Integer>();
     @FXML
     ComboBox<String> authorName = new ComboBox<>();
     @FXML
     Button addAuthorName;
     @FXML
     Button deleteAuthorName;
+
+    private Send_HTTP_Request sendHttpRequest = new Send_HTTP_Request();
     private DBConnector connector = new DBConnector().getConnector();
 
     PreparedStatement preparedStatement;
@@ -47,32 +48,78 @@ public class BooksFormController implements Initializable {
 
 
     public BooksFormController() throws SQLException {
-        connection= connector.getConnection();
+        connection = connector.getConnection();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Value factory.
+        initSpinner();
         authorName.setPromptText("Author Name");
         authorName.setEditable(true);
     }
+    @FXML
+    private void initSpinner() {
+       spinner.setValueFactory(
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100,1));
+        }
+
+    private void saveDateOnce() throws SQLException {
+        for (int i=0;i<spinner.getValue();i++){
+            saveData();
+        }
+    }
 
     @FXML
-    private String saveData() {
+    private void setAttach(){
 
-        String st = "INSERT INTO students ( student_id, first_name, last_name, faculty, contact_number,email) VALUES (?,?,?,?,?,?)";
-        String insertAuthor ="INSERT INTO authors (first_name,last_name)";
-        String book_group ="INSERT INTO author (isbn, description, title,quantity)";
-        //String insertAuthor ="INSERT INTO author (first_name,last_name)";
-        //String insertAuthor ="INSERT INTO author (first_name,last_name)";
-        //preparedStatement = (PreparedStatement) connection.prepareStatement(st);
-        //preparedStatement.setString(1, id.getText());
-        //preparedStatement.setString(2, name.getText());
-        //preparedStatement.setString(3, surname.getText());
-        //preparedStatement.setString(4, faculty.getText());
-        //preparedStatement.setString(5, contact_num.getText());
-        //preparedStatement.setString(6, email.getText());
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files","*.jpg") );
+        File selectedFile= fileChooser.showOpenDialog(null);
 
-        //preparedStatement.executeUpdate();
+        //create and set image
+        Image image= new Image(selectedFile.toURI().toString());
+        photo.setImage(image);
+
+
+    }
+
+
+    @FXML
+    private String saveData() throws SQLException {
+
+        String insertAuthors ="INSERT INTO authors (first_name,last_name) VALUES (?,?)";
+        String insertBook_group ="INSERT INTO book_group (isbn, descrip, title) VALUES (?,?,?)";
+        //String insertAuthor_books ="INSERT INTO author_books (isbn) VALUES (?)";
+        String insertBook ="INSERT INTO book (isbn) VALUES (?)";
+        preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthors);
+        for (Object obj: authorName.getItems()){
+            String[] arrOfStr = obj.toString().split(" ", 2);
+            if(arrOfStr.length==1){
+            preparedStatement.setString(1,arrOfStr[0]);
+            preparedStatement.setString(2,"");
+            }else{
+                preparedStatement.setString(1,arrOfStr[0]);
+                preparedStatement.setString(2,arrOfStr[1]);
+            }
+        }
+        try{
+        int a=Integer.parseInt(isbn.getText());
+
+
+
+            preparedStatement = (PreparedStatement) connection.prepareStatement(insertBook_group);
+            preparedStatement.setInt(1, a);
+            preparedStatement.setString(2, description.getText());
+            preparedStatement.setString(3, title.getText());
+
+            //preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthor_books);
+            //preparedStatement.setString(1, isbn.getText());
+
+            preparedStatement = (PreparedStatement) connection.prepareStatement(insertBook);
+            preparedStatement.setInt(1, a);
+        }catch (Exception e) {}
+        preparedStatement.executeUpdate();
 
 //            fetRowList();
         //clear fields
@@ -81,12 +128,12 @@ public class BooksFormController implements Initializable {
 
     }
     private void clearFields() {
-        /*id.clear();
-        name.clear();
-        surname.clear();
-        faculty.clear();
-        contact_num.clear();
-        email.clear();*/
+        isbn.clear();
+        title.clear();
+        description.clear();
+        authorName.getItems().removeAll();
+        //photo.setImage(new Image("index.png"));
+        //spinner email.clear();
     }
 
     public void handleAdd() {
@@ -113,4 +160,8 @@ public class BooksFormController implements Initializable {
         ((Stage)cancel.getScene().getWindow()).close();
     }
 
+
+    public void getData() throws Exception {
+        sendHttpRequest.call_me(isbn.getText());
+    }
 }

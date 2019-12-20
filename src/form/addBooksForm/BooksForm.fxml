@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="443.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="form.addBooksForm.BooksFormController">
+<VBox id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="form.addBooksForm.BooksFormController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="448.0">
          <children>
@@ -29,12 +29,12 @@
                   <Insets bottom="10.0" left="70.0" right="14.0" />
                </HBox.margin>
             </Label>
-            <TextField id="textField" fx:id="isbn" prefHeight="25.0" prefWidth="159.0" stylesheets="@style.css">
+            <TextField fx:id="isbn" prefHeight="25.0" prefWidth="159.0" stylesheets="@style.css">
                <HBox.margin>
                   <Insets bottom="10.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="getData" mnemonicParsing="false" styleClass="ipad-grey" stylesheets="@style.css" text="Get data">
+            <Button fx:id="getData" onAction="#getData" mnemonicParsing="false" styleClass="ipad-grey" stylesheets="@style.css" text="Get data">
                <HBox.margin>
                   <Insets bottom="10.0" left="20.0" />
                </HBox.margin>
@@ -49,6 +49,16 @@
                </HBox.margin>
             </Label>
             <TextField fx:id="title" prefHeight="25.0" prefWidth="241.0" stylesheets="@style.css" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label id="label" stylesheets="@style.css" text="Published year">
+               <HBox.margin>
+                  <Insets left="2.0" right="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="publishedYear" prefHeight="25.0" prefWidth="240.0" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
@@ -78,7 +88,7 @@
                   <Insets left="20.0" right="5.0" />
                </HBox.margin>
             </Label>
-            <TextArea id="textField" fx:id="description" prefHeight="38.0" prefWidth="241.0" stylesheets="@style.css">
+            <TextArea fx:id="description" prefHeight="38.0" prefWidth="241.0" stylesheets="@style.css">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
@@ -100,7 +110,7 @@
                   <Image url="@index.png" />
                </image>
             </ImageView>
-            <Button fx:id="attach" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="ipad-grey" stylesheets="@style.css" text="Attach...">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setAttach" styleClass="ipad-grey" stylesheets="@style.css" text="Attach...">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -111,22 +121,24 @@
          <children>
             <Label id="label" stylesheets="@style.css" text="Quantity">
                <HBox.margin>
-                  <Insets left="40.0" right="10.0" top="10.0" />
-               </HBox.margin></Label>
-            <Spinner prefHeight="25.0" prefWidth="102.0">
+                  <Insets bottom="10.0" left="40.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Spinner fx:id="spinner" prefHeight="25.0" prefWidth="237.0">
                <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin></Spinner>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </Spinner>
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="323.0">
          <children>
-            <Button id="okButton" fx:id="ok" mnemonicParsing="false" styleClass="record-sales" stylesheets="@style.css" text="OK">
+            <Button id="button" fx:id="ok" onAction="#saveData" mnemonicParsing="false" styleClass="record-sales" stylesheets="@style.css" text="OK">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button id="cancelButton" fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonHandler" styleClass="record-sales" stylesheets="@style.css" text="Cancel">
+            <Button id="button" fx:id="cancel" onAction="#cancelButtonHandler" mnemonicParsing="false" styleClass="record-sales" stylesheets="@style.css" text="Cancel">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

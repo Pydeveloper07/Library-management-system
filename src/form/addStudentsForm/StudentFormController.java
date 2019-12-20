@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -17,6 +20,8 @@ import java.util.ResourceBundle;
 public class StudentFormController implements Initializable {
     @FXML
     private Button cancelBtn;
+    @FXML
+    private Label labelWarn;
     @FXML
     private ComboBox<String> facultyCombo = new ComboBox<>();
     @FXML
@@ -42,8 +47,24 @@ public class StudentFormController implements Initializable {
     }
 
     @FXML
-    private String saveData() {
+    private void handleEventSave(){
+        if (id.getText().isEmpty()||name.getText().isEmpty()||
+                surname.getText().isEmpty()||contact_number.getText().isEmpty()||
+                email.getText().isEmpty()||password.getText().isEmpty())
+        {
+            labelWarn.setText("FILL ALL FIELDS");
+            labelWarn.setTextFill(Color.RED);
+        }
+        else{
+            saveData();
+            labelWarn.setText("Successfully inserted");
+            labelWarn.setTextFill(Color.GREEN);
 
+        }
+    }
+
+    @FXML
+    private String saveData() {
         try {
             String students = "INSERT INTO students ( student_id, first_name, last_name, faculty, contact_number,email,password_code) VALUES (?,?,?,?,?,?,?)";
             preparedStatement = (PreparedStatement) connection.prepareStatement(students);
@@ -54,11 +75,8 @@ public class StudentFormController implements Initializable {
             preparedStatement.setString(5, contact_number.getText());
             preparedStatement.setString(6, email.getText());
             preparedStatement.setString(7, password.getText());
-
             preparedStatement.executeUpdate();
-
-//            fetRowList();
-            //clear fields
+            preparedStatement.close();
             clearFields();
             return "Success";
 
@@ -68,19 +86,18 @@ public class StudentFormController implements Initializable {
         }
     }
     private void clearFields() {
-//        id.clear();
-//        name.clear();
-//        surname.clear();
-//        contact_number.clear();
-//        email.clear();
-//        password.clear();
+        id.clear();
+        name.clear();
+        surname.clear();
+        contact_number.clear();
+        email.clear();
+        password.clear();
     }
-
 
     public void initialize (URL location, ResourceBundle resources)
     {
         facultyCombo.getItems().addAll("CSE", "ICE", "SOL");
-        facultyCombo.setPromptText("CSE");
+        facultyCombo.setValue("CSE");
     }
     public void cancelButtonHandler()
     {

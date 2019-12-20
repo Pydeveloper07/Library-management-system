@@ -76,7 +76,6 @@ public class WindowLoader {
 
         XYChart.Series series = new XYChart.Series();
         series.setName("Number of books");
-
         series.getData().add(new XYChart.Data("Jan", 0));
         series.getData().add(new XYChart.Data("Feb", 0));
         series.getData().add(new XYChart.Data("Mar", 60));
@@ -100,7 +99,7 @@ public class WindowLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root, 400 , 500));
+        stage.setScene(new Scene(root, 400 , 600));
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Add New Book");
         stage.setResizable(false);
