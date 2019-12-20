@@ -1,6 +1,7 @@
 package form.addBooksForm;
 
 import dataBase.DBConnector;
+import getJSON.Send_HTTP_Request;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -39,6 +40,7 @@ public class BooksFormController implements Initializable {
     @FXML
     Button deleteAuthorName;
 
+    private Send_HTTP_Request sendHttpRequest = new Send_HTTP_Request();
     private DBConnector connector = new DBConnector().getConnector();
 
     PreparedStatement preparedStatement;
@@ -158,4 +160,8 @@ public class BooksFormController implements Initializable {
         ((Stage)cancel.getScene().getWindow()).close();
     }
 
+
+    public void getData() throws Exception {
+        sendHttpRequest.call_me(isbn.getText());
+    }
 }

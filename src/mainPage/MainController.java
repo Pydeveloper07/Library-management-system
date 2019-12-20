@@ -25,21 +25,33 @@ public class MainController {
         }
         return mainController;
     }
+
+    //load user photo and name
     public void loadUserDetails(Label userNameLabel, Circle avatar){
         userNameLabel.setText(userSession.getFirstName() + " " + userSession.getLastName());
         //Avatar setting
-        File file = new File("images"+userSession.getUserId()+".jpg");
+        File file = new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg");
         if (file.exists()) {
-            avatar.setFill(new ImagePattern(new Image("images/" + userSession.getUserId() + ".jpg")));
+            avatar.setFill(new ImagePattern(new Image("images/userPhoto/" + userSession.getUserId() + ".jpg")));
         }else{
-            Image image = new Image("images/avatar-icon-images-4.jpg",false);
+            Image image = new Image("images/demo.jpg",false);
             avatar.setFill(new ImagePattern(image));
         }
         avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
     }
+
     public void initializeStudentTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/StudentTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void initializeBookTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BookTable.fxml"));
             pane.setCenter(fxmlLoader.load());
         }
         catch(Exception ex){
@@ -71,4 +83,6 @@ public class MainController {
         }
         return resultText;
     }
+
+
 }

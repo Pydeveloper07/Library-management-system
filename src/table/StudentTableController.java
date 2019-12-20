@@ -1,5 +1,6 @@
 package table;
 
+import WindowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,12 @@ public class StudentTableController implements Initializable {
     private TableColumn<ModelTable, String> col_email;
     @FXML
     private TextField filter;
+    private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
+    @FXML
+    private void addNewUserWindow(){
+        windowLoader.loadAddNewUserWindow();
+    }
+
 
     private DBConnector connector = new DBConnector().getConnector();
 
@@ -220,9 +227,14 @@ public class StudentTableController implements Initializable {
         SortedList<ModelTable> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
-
     }
+    @FXML
+    public void deleteUserTable(){
 
-
+//        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
+//                t.getTablePosition().getRow())  ) ;
+//        //remove selected item from the table list
+//        data.remove(currentPerson);
+    }
 
 }

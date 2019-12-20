@@ -34,7 +34,7 @@
                   <Insets bottom="10.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="getData" mnemonicParsing="false" styleClass="ipad-grey" stylesheets="@style.css" text="Get data">
+            <Button fx:id="getData" onAction="#getData" mnemonicParsing="false" styleClass="ipad-grey" stylesheets="@style.css" text="Get data">
                <HBox.margin>
                   <Insets bottom="10.0" left="20.0" />
                </HBox.margin>

@@ -11,7 +11,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import loginPage.UserSession;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -44,10 +49,14 @@ public class MainPageLibrarianController {
     private GridPane statisticsPane;
     @FXML
     private Circle avatar;
+    @FXML
+    private Label labelUserName;
+
+    UserSession userSession=UserSession.getInstance();
+
     public void initialize() throws MalformedURLException {
 
-        //Avatar setting
-        //setAvatar();
+        mainController.loadUserDetails(labelUserName, avatar);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -99,34 +108,34 @@ public class MainPageLibrarianController {
     }
     @FXML
     private void setAvatar() throws MalformedURLException {
-/*
-        int width = 963;    //width of the image
-        int height = 640;   //height of the image
+
+        int width = 130;    //width of the image
+        int height = 130;   //height of the image
         BufferedImage imageBuf = null;
         File f = null;
 
-        FileChooser fileChooser=new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files","*.jpg") );
-        File selectedFile= fileChooser.showOpenDialog(null);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
 
         //create and set image
-        Image image= new Image(selectedFile.toURL().toString());
-        //img1.setImage(image);
-*/
-        Image image=new Image("images/avatar-icon-images-4.jpg",false);
+        Image image = new Image(selectedFile.toURI().toString());
+
         avatar.setFill(new ImagePattern(image));
-        avatar.setEffect(new DropShadow(+25d,0d,+2d, Color.DARKSEAGREEN));
-/*
+        avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+
         //write
-        try{
+        try {
+
             ImageIO.write(ImageIO.read(
                     new File(selectedFile.toString())),
                     "jpg",
-                    new File("images\\"+"write.jpg"));
-        }catch(IOException e){
-            System.out.println("Error: "+e);
+                    new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg"));
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
         }
-*/
+
 
     }
+
 }

@@ -76,7 +76,6 @@ public class WindowLoader {
 
         XYChart.Series series = new XYChart.Series();
         series.setName("Number of books");
-
         series.getData().add(new XYChart.Data("Jan", 0));
         series.getData().add(new XYChart.Data("Feb", 0));
         series.getData().add(new XYChart.Data("Mar", 60));
