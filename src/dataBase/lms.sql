@@ -1,9 +1,8 @@
-CREATE DATABASE lms;
 CREATE TABLE students(
 student_id VARCHAR(8) NOT NULL,
 first_name VARCHAR(20) NOT NULL,
 last_name VARCHAR(20) NOT NULL,
-faculty VARCHAR(15) NOT NULL,
+faculty VARCHAR(5) NOT NULL,
 contact_number VARCHAR(13),
 email VARCHAR(30),
 password_code VARCHAR(15)NOT NULL,
@@ -17,8 +16,9 @@ PRIMARY KEY(author_id)
 );
 CREATE TABLE book_group(
 isbn INT NOT NULL,
-descrip VARCHAR(40),
-title VARCHAR(30) NOT NULL,
+category VARCHAR(30),
+descrip VARCHAR(305),
+title VARCHAR(30),
 quantity INT NOT NULL DEFAULT 0,
 available INT NOT NULL DEFAULT 0,
 PRIMARY KEY(isbn)
@@ -27,7 +27,7 @@ CREATE TABLE author_books(
 author_id INT NOT NULL,
 isbn INT NOT NULL, 
 PRIMARY KEY(author_id, isbn),
-FOREIGN KEY(author_id) REFERENCES author(author_id) ON DELETE CASCADE,
+FOREIGN KEY(author_id) REFERENCES authors(author_id) ON DELETE CASCADE,
 FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE book(
@@ -38,6 +38,7 @@ FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE lost_books(
 book_id INT NOT NULL,
+isbn INT NOT NULL,
 student_id VARCHAR(8) NOT NULL,
 lost_date DATE,
 PRIMARY KEY(book_id),
@@ -80,19 +81,19 @@ FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE
 CREATE TABLE waiting_list(
 student_id VARCHAR(8) NOT NULL,
 isbn INT NOT NULL,
-reservartion_date DATE,
+reservation_date DATE,
 waiting_until DATE,
 PRIMARY KEY(student_id, isbn),
 FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE,
 FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE ordered_books(
-book_id INT NOT NULL,
+isbn INT NOT NULL,
 student_id VARCHAR(8) NOT NULL,
 issued_date DATE,
 due_date DATE,
-PRIMARY KEY(book_id),
-FOREIGN KEY(book_id) REFERENCES book(book_id) ON DELETE CASCADE,
+PRIMARY KEY(isbn, student_id),
+FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE,
 FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE
 );
 INSERT INTO students VALUES
@@ -128,3 +129,49 @@ INSERT INTO admin_table VALUES
 ('U1810171', 'Tukhtamurod', 'Isroilov', '+998901701111', 't.isroilov@student.mail.uz', 'webhero171'),
 ('U1810151', 'Mubina', 'Mardonova', '+998935318688', 'm.mardonova@student.inha.uz', 'anibum801'),
 ('U1810149', 'Sabokhat', 'Juraeva', '+998998077755', 's.juraeva@student.mail.uz', 'sabo0002');
+
+CREATE TRIGGER insert_into_book
+AFTER INSERT ON book
+REFERENCING NEW AS new
+FOR EACH ROW MODE DB2SQL
+UPDATE book_group SET quantity=1+(SELECT quantity FROM book_group WHERE isbn=new.isbn), 
+available=1+(SELECT available FROM book_group WHERE isbn=new.isbn) WHERE isbn=new.isbn;
+
+CREATE TRIGGER delete_from_book
+AFTER DELETE ON book
+REFERENCING OLD AS old
+FOR EACH ROW MODE DB2SQL
+UPDATE book_group SET quantity=(SELECT quantity FROM book_group WHERE isbn=old.isbn)-1, 
+available=(SELECT available FROM book_group WHERE isbn=old.isbn)-1 WHERE isbn=old.isbn;
+
+CREATE TRIGGER insert_into_ordered_books
+AFTER INSERT ON ordered_books
+REFERENCING NEW AS new
+FOR EACH ROW MODE DB2SQL
+UPDATE book_group SET available=(SELECT available FROM book_group WHERE isbn=new.isbn)-1;
+
+CREATE TRIGGER delete_from_ordered_books
+AFTER DELETE ON ordered_books
+REFERENCING OLD AS old
+FOR EACH ROW MODE DB2SQL
+UPDATE book_group SET available=(SELECT available FROM book_group WHERE isbn=old.isbn)+1;
+
+CREATE TRIGGER insert_into_lost_books
+AFTER INSERT ON lost_books
+REFERENCING NEW AS new
+FOR EACH ROW MODE DB2SQL
+DELETE FROM book WHERE book_id=new.book_id;
+
+CREATE TRIGGER delete_from_lost_books
+AFTER DELETE ON lost_books
+REFERENCING OLD AS old
+FOR EACH ROW MODE DB2SQL
+INSERT INTO book(isbn) VALUES(old.isbn);
+
+CREATE TRIGGER insert_into_waiting_list
+AFTER INSERT ON waiting_list
+REFERENCING NEW AS new
+FOR EACH ROW MODE DB2SQL
+UPDATE waiting_list SET waiting_until=(SELECT Min(due_date) FROM ordered_books 
+WHERE ordered_books.isbn=new.isbn)
+WHERE student_id=new.student_id;
