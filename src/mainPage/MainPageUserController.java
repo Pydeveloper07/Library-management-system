@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -56,15 +55,12 @@ public class MainPageUserController {
     private Circle avatar;
     @FXML
     private Label labelUserName;
-    @FXML
-    private BorderPane homeBorderPane;
 
     UserSession userSession=UserSession.getInstance();
 
     public void initialize() throws MalformedURLException {
 
         mainController.loadUserDetails(labelUserName, avatar);
-        windowLoader.loadStudentHome(homeBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -97,14 +93,6 @@ public class MainPageUserController {
         mainController.setPane(event, homePane, buttons, topLabel);
     }
     @FXML
-    public void setLibrariansPane(MouseEvent event){
-        mainController.setPane(event, librariansPane, buttons, topLabel);
-    }
-    @FXML
-    public void setStudentsPane(MouseEvent event){
-        mainController.setPane(event, studentsPane, buttons, topLabel);
-    }
-    @FXML
     public void setBooksPane(MouseEvent event){
         mainController.setPane(event, booksPane, buttons, topLabel);
     }
@@ -113,43 +101,12 @@ public class MainPageUserController {
         mainController.setPane(event, statisticsPane, buttons, topLabel);
     }
     @FXML
-    private void addNewBookWindow(){
-        windowLoader.loadAddNewBookWindow();
-    }
-
-    @FXML
-    private void addNewUserWindow(){
-        windowLoader.loadAddNewUserWindow();
-    }
-    @FXML
-    private void setAvatar() throws MalformedURLException {
-
-        int width = 130;    //width of the image
-        int height = 130;   //height of the image
-        BufferedImage imageBuf = null;
-        File f = null;
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        //create and set image
-        Image image = new Image(selectedFile.toURI().toString());
-
-        avatar.setFill(new ImagePattern(image));
-        avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
-
-        //write
-        try {
-
-            ImageIO.write(ImageIO.read(
-                    new File(selectedFile.toString())),
-                    "jpg",
-                    new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg"));
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
+    public void setAvatar(){
+        try{
+            mainController.setAvatar(avatar);
         }
-
-
+        catch(MalformedURLException ex){
+            ex.printStackTrace();
+        }
     }
 }

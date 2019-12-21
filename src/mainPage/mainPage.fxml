@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="1366.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1131.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="1366.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1116.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <GridPane prefHeight="522.0" prefWidth="317.0" style="-fx-background-color: #e6eeff;" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -31,11 +30,8 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial" size="18.0" />
                </font>
-               <padding>
-                  <Insets top="6.0" />
-               </padding>
             </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
@@ -96,6 +92,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                   <GridPane fx:id="statisticsPane" style="-fx-background-color: white;" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -181,6 +185,36 @@
                         </BorderPane>
                      </children>
                   </GridPane>
+                  <GridPane fx:id="studentsPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="studentsBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initStudentsTable" prefHeight="118.0" prefWidth="218.0" text="TOTAL STUDENTS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initFinedStudentsTable" prefHeight="118.0" prefWidth="218.0" text="FINED STUDENTS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBlockedStudentsTable" prefHeight="118.0" prefWidth="218.0" text="BLOCKED STUDENTS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initReservedStudentsTable" prefHeight="118.0" prefWidth="218.0" text="RESERVED STUDENTS" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                                 </children>
+                              </GridPane>
+                           </top></BorderPane>
+                     </children>
+                  </GridPane>
                   <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -191,154 +225,23 @@
                      <children>
                         <BorderPane fx:id="booksBorderPane" prefHeight="200.0" prefWidth="200.0">
                            <top>
-                              <GridPane prefHeight="97.0" prefWidth="794.0" BorderPane.alignment="CENTER">
+                              <GridPane BorderPane.alignment="CENTER">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5">
-                                       <children>
-                                          <Button fx:id="newBookBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#addNewBookWindow" prefHeight="26.0" prefWidth="70.0" text="New">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button fx:id="deleteBookBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Delete">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                    <TextField prefHeight="26.0" prefWidth="129.0" promptText="Title" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" top="10.0" />
-                                       </padding>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="117.0" promptText="Published Date" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" top="10.0" />
-                                       </padding>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="ISBN" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" top="10.0" />
-                                       </padding>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="194.0" text="Search" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" top="20.0" />
-                                       </GridPane.margin>
-                                       <padding>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </padding>
-                                    </Button>
-                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="Author" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" top="10.0" />
-                                       </padding>
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField prefHeight="26.0" prefWidth="32.0" promptText="Subject" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" top="10.0" />
-                                       </padding>
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </TextField>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBookTable" prefHeight="118.0" prefWidth="218.0" text="TOTAL BOOKS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initIssuedBookTable" prefHeight="118.0" prefWidth="218.0" text="ISSUED BOOKS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="118.0" prefWidth="218.0" text="LOST BOOKS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
                                  </children>
-                                 <padding>
-                                    <Insets top="25.0" />
-                                 </padding>
                               </GridPane>
                            </top>
                         </BorderPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
-                           <top>
-                              <HBox alignment="CENTER" prefHeight="91.0" prefWidth="814.0" spacing="50.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="22000" textFill="#2a73ff">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Total Books" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="1500" textFill="#26bfbc">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Total Issued" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="1000" textFill="#fa5f7e">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Total Lost Books" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </top>
-                           <center>
-                              <PieChart BorderPane.alignment="CENTER">
-                                 <padding>
-                                    <Insets bottom="30.0" />
-                                 </padding></PieChart>
-                           </center>
-                        </BorderPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="studentsPane" style="-fx-background-color: #ccccb3;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <BorderPane fx:id="studentsBorderPane" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </GridPane>
                </children>

@@ -11,9 +11,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import loginPage.UserSession;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MainController {
@@ -39,8 +44,7 @@ public class MainController {
         }
         avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
     }
-
-    public void initializeStudentTable(BorderPane pane){
+    public void initializeTotalStudentsTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/StudentTable.fxml"));
             pane.setCenter(fxmlLoader.load());
@@ -49,20 +53,18 @@ public class MainController {
             ex.printStackTrace();
         }
     }
-
-    public void initializeHome(BorderPane pane){
+    public void initializeBookTable(BorderPane pane){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/homePage.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BookTable.fxml"));
             pane.setCenter(fxmlLoader.load());
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
     }
-
-    public void initializeBookTable(BorderPane pane){
+    public void initializeIssuedBookTable(BorderPane pane){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BookTable.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/IssuedBooksTable.fxml"));
             pane.setCenter(fxmlLoader.load());
         }
         catch(Exception ex){
@@ -94,6 +96,59 @@ public class MainController {
         }
         return resultText;
     }
+    public void initializeFinedStudentsTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/FinedStudentsTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void initializeBlockedStudentsTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BlockedStudentsTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void initializeReservedStudentsTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/ReservedStudentsTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void setAvatar(Circle avatar) throws MalformedURLException {
+        int width = 130;    //width of the image
+        int height = 130;   //height of the image
+        BufferedImage imageBuf = null;
+        File f = null;
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
 
+        //create and set image
+        Image image = new Image(selectedFile.toURI().toString());
+
+        //Image image=new Image("images/demo.jpg",false);
+        avatar.setFill(new ImagePattern(image));
+        avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+
+        //write
+        try {
+
+            ImageIO.write(ImageIO.read(
+                    new File(selectedFile.toString())),
+                    "jpg",
+                    new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg"));
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+    }
 }

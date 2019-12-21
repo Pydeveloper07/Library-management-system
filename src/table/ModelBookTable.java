@@ -2,13 +2,14 @@ package table;
 
 public class ModelBookTable {
 
-    String isbn,title,author,descrip,quantity,available;
+    String isbn, category, author, descrip, title, quantity,available;
 
-    public ModelBookTable(String isbn, String title, String author, String descrip, String quantity, String available) {
+    public ModelBookTable(String isbn, String category, String author, String descrip, String title, String quantity, String available) {
         this.isbn = isbn;
-        this.title = title;
+        this.category = category;
         this.author = author;
         this.descrip = descrip;
+        this.title = title;
         this.quantity = quantity;
         this.available = available;
     }
@@ -20,6 +21,10 @@ public class ModelBookTable {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
+    public void setCategory(String category){this.category = category;}
+
+    public String getCategory(){return this.category;}
 
     public String getTitle() {
         return title;
@@ -49,15 +54,7 @@ public class ModelBookTable {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public String getAvailable() {
         return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
     }
 }

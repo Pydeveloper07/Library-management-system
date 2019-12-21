@@ -41,8 +41,6 @@ public class MainPageAdminController {
     @FXML
     private GridPane homePane;
     @FXML
-    private BorderPane homeBorderPane;
-    @FXML
     private GridPane librariansPane;
     @FXML
     private GridPane studentsPane;
@@ -62,11 +60,9 @@ public class MainPageAdminController {
 
     public void initialize() throws MalformedURLException {
 
-        mainController.initializeHome(homeBorderPane);
         mainController.loadUserDetails(labelUserName, avatar);
-        mainController.initializeStudentTable(studentsBorderPane);
+        mainController.initializeTotalStudentsTable(studentsBorderPane);
         mainController.initializeBookTable(booksBorderPane);
-        windowLoader.loadPieChart(homeBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -84,7 +80,30 @@ public class MainPageAdminController {
             button.setText(mainController.letterSpace(button.getText(), 1));
         }
     }
-
+    @FXML
+    public void initStudentsTable(){
+        mainController.initializeTotalStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initBookTable(){
+        mainController.initializeIssuedBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initIssuedBookTable(){
+        mainController.initializeIssuedBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initFinedStudentsTable(){
+        mainController.initializeFinedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initBlockedStudentsTable(){
+        mainController.initializeBlockedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initReservedStudentsTable(){
+        mainController.initializeReservedStudentsTable(studentsBorderPane);
+    }
     @FXML
     public void setHomePane(MouseEvent event) {
         mainController.setPane(event, homePane, buttons, topLabel);
@@ -119,38 +138,13 @@ public class MainPageAdminController {
     private void addNewUserWindow() {
         windowLoader.loadAddNewUserWindow();
     }
-
     @FXML
-    private void setAvatar() throws MalformedURLException {
-
-        int width = 130;    //width of the image
-        int height = 130;   //height of the image
-        BufferedImage imageBuf = null;
-        File f = null;
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Jpeg files", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        //create and set image
-        Image image = new Image(selectedFile.toURI().toString());
-
-        //Image image=new Image("images/demo.jpg",false);
-        avatar.setFill(new ImagePattern(image));
-        avatar.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
-
-        //write
-        try {
-
-            ImageIO.write(ImageIO.read(
-                    new File(selectedFile.toString())),
-                    "jpg",
-                    new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg"));
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
+    public void setAvatar(){
+        try{
+            mainController.setAvatar(avatar);
         }
-
-
+        catch(MalformedURLException ex){
+            ex.printStackTrace();
+        }
     }
-
 }

@@ -30,13 +30,13 @@ public class BookTableController implements Initializable {
     @FXML
     private TableColumn<ModelBookTable,String> col_author;
     @FXML
+    private TableColumn<ModelBookTable,String> col_category;
+    @FXML
     private TableColumn<ModelBookTable,String> col_descrip;
     @FXML
     private TableColumn<ModelBookTable,String> col_quantity;
     @FXML
     private TableColumn<ModelBookTable,String> col_available;
-    @FXML
-    private Button search;
 
     private DBConnector connector = new DBConnector().getConnector();
 
@@ -51,13 +51,16 @@ public class BookTableController implements Initializable {
 
         try {
             connection = connector.getConnection();
-            ResultSet resultSet=connection.createStatement().executeQuery("SELECT * FROM book_group");
-            while (resultSet.next()){
+            ResultSet resultSet=connection.createStatement().executeQuery(
+                    "SELECT book_group.isbn, category, first_name, last_name, descrip, title, quantity, available FROM book_group INNER JOIN author_books ON " +
+                            "book_group.isbn=author_books.isbn INNER JOIN authors ON author_books.author_id=authors.author_id");
+            if (resultSet.next()){
                 oblist.add(new ModelBookTable(
                         resultSet.getString("isbn"),
-                        resultSet.getString("title"),
-                        resultSet.getString("author"),
+                        resultSet.getString("category"),
+                        resultSet.getString("first_name") + resultSet.getString("last_name"),
                         resultSet.getString("descrip"),
+                        resultSet.getString("title"),
                         resultSet.getString("quantity"),
                         resultSet.getString("available")
                         ));
@@ -68,6 +71,84 @@ public class BookTableController implements Initializable {
 
         col_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
 
+        col_title.setCellValueFactory(new PropertyValueFactory<>("category"));
+        col_title.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_title.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
+                        ModelBookTable modelBookTable = table.getSelectionModel().getSelectedItem();
+                        ((ModelBookTable) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setTitle(t.getNewValue());
+                        try {
+                            connection = connector.getConnection();
+                            PreparedStatement statement = connection.prepareStatement(
+                                    "UPDATE book_group SET category=? WHERE isbn=?");
+
+                            statement.setString(1, modelBookTable.getCategory());
+                            statement.setString(2, modelBookTable.getIsbn());
+                            statement.executeUpdate();
+                            statement.close();
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+
+        col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        col_author.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_author.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
+                        ModelBookTable modelBookTable = table.getSelectionModel().getSelectedItem();
+                        ((ModelBookTable) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setAuthor(t.getNewValue());
+                        try {
+                            connection = connector.getConnection();
+                            PreparedStatement statement = connection.prepareStatement(
+                                    "UPDATE authors SET first_name=? last_name=? WHERE author_id=?");
+                            statement.setString(1, modelBookTable.getAuthor());
+                            statement.setString(2, modelBookTable.getCategory());
+                            statement.executeUpdate();
+                            statement.close();
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+
+        col_descrip.setCellValueFactory(new PropertyValueFactory<>("descrip"));
+        col_descrip.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_descrip.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
+                        ModelBookTable modelBookTable = table.getSelectionModel().getSelectedItem();
+                        ((ModelBookTable) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setDescrip(t.getNewValue());
+                        try {
+                            connection = connector.getConnection();
+                            PreparedStatement statement = connection.prepareStatement(
+                                    "UPDATE book_group SET descrip=? WHERE isbn=?");
+                            statement.setString(1, modelBookTable.getDescrip());
+                            statement.setString(2, modelBookTable.getIsbn());
+                            statement.executeUpdate();
+                            statement.close();
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
 
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_title.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -96,112 +177,11 @@ public class BookTableController implements Initializable {
                 }
         );
 
-
-
-        col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
-//        col_surname.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_surname.setOnEditCommit(
-//                new EventHandler<TableColumn.CellEditEvent<ModelStudentTable, String>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<ModelStudentTable, String> t) {
-//                        ModelStudentTable modelStudentTable = table.getSelectionModel().getSelectedItem();
-//                        ((ModelStudentTable) t.getTableView().getItems().get(
-//                                t.getTablePosition().getRow())
-//                        ).setSurname(t.getNewValue());
-//                        try {
-//                            connection = connector.getConnection();
-//                            PreparedStatement statement = connection.prepareStatement(
-//                                    "UPDATE students SET last_name=? WHERE student_id=?");
-//                            statement.setString(1, modelStudentTable.getSurname());
-//                            statement.setString(2, modelStudentTable.getId());
-//                            statement.executeUpdate();
-//                            statement.close();
-//                            connection.close();
-//                        } catch (SQLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//        );
-
-        col_descrip.setCellValueFactory(new PropertyValueFactory<>("descrip"));
-//        col_faculty.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_faculty.setOnEditCommit(
-//                new EventHandler<TableColumn.CellEditEvent<ModelStudentTable, String>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<ModelStudentTable, String> t) {
-//                        ModelStudentTable modelStudentTable = table.getSelectionModel().getSelectedItem();
-//                        ((ModelStudentTable) t.getTableView().getItems().get(
-//                                t.getTablePosition().getRow())
-//                        ).setFaculty(t.getNewValue());
-//                        try {
-//                            connection = connector.getConnection();
-//                            PreparedStatement statement = connection.prepareStatement(
-//                                    "UPDATE students SET faculty=? WHERE student_id=?");
-//                            statement.setString(1, modelStudentTable.getFaculty());
-//                            statement.setString(2, modelStudentTable.getId());
-//                            statement.executeUpdate();
-//                            statement.close();
-//                            connection.close();
-//                        } catch (SQLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//        );
-
         col_quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-//        col_contact_num.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_contact_num.setOnEditCommit(
-//                new EventHandler<TableColumn.CellEditEvent<ModelStudentTable, String>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<ModelStudentTable, String> t) {
-//                        ModelStudentTable modelStudentTable = table.getSelectionModel().getSelectedItem();
-//                        ((ModelStudentTable) t.getTableView().getItems().get(
-//                                t.getTablePosition().getRow())
-//                        ).setContact_num(t.getNewValue());
-//                        try {
-//                            connection = connector.getConnection();
-//                            PreparedStatement statement = connection.prepareStatement(
-//                                    "UPDATE students SET contact_number=? WHERE student_id=?");
-//                            statement.setString(1, modelStudentTable.getContact_num());
-//                            statement.setString(2, modelStudentTable.getId());
-//                            statement.executeUpdate();
-//                            statement.close();
-//                            connection.close();
-//                        } catch (SQLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//        );
+        col_quantity.setCellFactory(TextFieldTableCell.forTableColumn());
 
         col_available.setCellValueFactory(new PropertyValueFactory<>("available"));
-//        col_email.setCellFactory(TextFieldTableCell.forTableColumn());
-//        col_email.setOnEditCommit(
-//                new EventHandler<TableColumn.CellEditEvent<ModelStudentTable, String>>() {
-//                    @Override
-//                    public void handle(TableColumn.CellEditEvent<ModelStudentTable, String> t) {
-//                        ModelStudentTable modelStudentTable = table.getSelectionModel().getSelectedItem();
-//                        ((ModelStudentTable) t.getTableView().getItems().get(
-//                                t.getTablePosition().getRow())
-//                        ).setEmail(t.getNewValue());
-//                        try {
-//                            connection = connector.getConnection();
-//                            PreparedStatement statement = connection.prepareStatement(
-//                                    "UPDATE students SET email=? WHERE student_id=?");
-//                            statement.setString(1, modelStudentTable.getEmail());
-//                            statement.setString(2, modelStudentTable.getId());
-//                            statement.executeUpdate();
-//                            statement.close();
-//                            connection.close();
-//                        } catch (SQLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//        );
-
+        col_quantity.setCellFactory(TextFieldTableCell.forTableColumn());
 
         table.setEditable(true);
         table.setItems(oblist);
