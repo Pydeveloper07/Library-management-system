@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -37,6 +38,8 @@ public class BooksFormController implements Initializable {
     ComboBox<String> authorName = new ComboBox<>();
     @FXML
     Button addAuthorName;
+    @FXML
+    TextField publishedYear;
     @FXML
     Button deleteAuthorName;
 
@@ -81,7 +84,6 @@ public class BooksFormController implements Initializable {
         Image image= new Image(selectedFile.toURI().toString());
         photo.setImage(image);
 
-
     }
 
 
@@ -118,22 +120,38 @@ public class BooksFormController implements Initializable {
 
             preparedStatement = (PreparedStatement) connection.prepareStatement(insertBook);
             preparedStatement.setInt(1, a);
-        }catch (Exception e) {}
+        }catch (Exception e) {
+
+        }
         preparedStatement.executeUpdate();
 
-//            fetRowList();
-        //clear fields
         clearFields();
-        return "Success";
 
+        return "Success";
     }
+
+    @FXML
+    private void handleEventSave() throws SQLException {
+        if (isbn.getText().isEmpty()||title.getText().isEmpty()||
+                publishedYear.getText().isEmpty()||authorName.getItems().isEmpty()||
+                description.getText().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("Please, fill all necessary fields!");
+            alert.showAndWait();
+        }
+        else{
+            saveData();
+        }
+    }
+
     private void clearFields() {
         isbn.clear();
         title.clear();
         description.clear();
         authorName.getItems().removeAll();
-        //photo.setImage(new Image("index.png"));
-        //spinner email.clear();
+        photo.setImage(new Image("images/demoBook.png"));
     }
 
     public void handleAdd() {
@@ -162,6 +180,34 @@ public class BooksFormController implements Initializable {
 
 
     public void getData() throws Exception {
-        sendHttpRequest.call_me(isbn.getText());
+        sendHttpRequest.call_me(isbn.getText(), this);
+    }
+    public void setPhoto(String url) {
+        System.out.println("Entered to setPhoto");
+        Image image= new Image(url);
+        photo.setImage(image);
+        System.out.println("Set to Photo");
+    }
+    public void setTitle(String txt) {
+        title.setText(txt);
+    }
+    public void setPublishedYear(String txt) {
+        publishedYear.setText(txt);
+    }
+    public void setDescription(String txt) {
+        description.setText(txt);
+    }
+    public void pressAdd(String txt) {
+        boolean exists = false;
+        for (Object obj: authorName.getItems()){
+            if(obj.toString() == txt) {
+                exists = true;
+                break;
+            }
+        }
+        if(!exists){
+            authorName.getItems().add(txt);
+            authorName.setValue("");
+        }
     }
 }

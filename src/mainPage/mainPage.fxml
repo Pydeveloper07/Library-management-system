@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -30,8 +31,11 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
                <font>
-                  <Font name="Arial" size="18.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
             </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
@@ -92,14 +96,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
                   <GridPane fx:id="statisticsPane" style="-fx-background-color: white;" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -277,6 +273,60 @@
                                  </padding>
                               </GridPane>
                            </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <HBox alignment="CENTER" prefHeight="91.0" prefWidth="814.0" spacing="50.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="22000" textFill="#2a73ff">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Total Books" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="1500" textFill="#26bfbc">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Total Issued" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="1000" textFill="#fa5f7e">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Total Lost Books" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </top>
+                           <center>
+                              <PieChart BorderPane.alignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="30.0" />
+                                 </padding></PieChart>
+                           </center>
                         </BorderPane>
                      </children>
                   </GridPane>

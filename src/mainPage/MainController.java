@@ -49,6 +49,17 @@ public class MainController {
             ex.printStackTrace();
         }
     }
+
+    public void initializeHome(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/homePage.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public void initializeBookTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BookTable.fxml"));

@@ -1,21 +1,32 @@
 package getJSON;
 
+import form.addBooksForm.BooksFormController;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
 
 public class Send_HTTP_Request {
+    private static String title, publisher, publishedDate, description, category;
+    private static String[] authors;
+    private static String language, infoLink;
+    private static int pageCount;
+    private static String imageLink, isbn;
 
-    private String title,publisher,publishedDate,description,category;
-    private String[] authors;
-    private String imageLink,language,infoLink;
-    private int pageCount;
+    public void call_me(String isbn, BooksFormController currentBookAdder) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("Look, an Information Dialog ✅");
+        alert.setContentText("I have a great message for you!");
+        alert.getButtonTypes().clear();
 
-    public void call_me(String isbn) throws Exception {
+        alert.showAndWait();
 
         String url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
         URL obj = new URL(url);
@@ -39,10 +50,10 @@ public class Send_HTTP_Request {
         boolean found = myResponse.getInt("totalItems") > 0;
         if (found) {
             JSONObject item = myResponse.getJSONArray("items").getJSONObject(0);
-                JSONObject volumeInfo = item.getJSONObject("volumeInfo");
-                    JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
-                    JSONArray industryIdentifiers = volumeInfo.getJSONArray("industryIdentifiers");
-                    JSONArray categoriesJSON = volumeInfo.getJSONArray("categories");
+            JSONObject volumeInfo = item.getJSONObject("volumeInfo");
+            JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
+            JSONArray industryIdentifiers = volumeInfo.getJSONArray("industryIdentifiers");
+            JSONArray categoriesJSON = volumeInfo.getJSONArray("categories");
 
             // Get Title
             title = volumeInfo.getString("title");
@@ -75,37 +86,44 @@ public class Send_HTTP_Request {
             // Get Info Link
             infoLink = volumeInfo.getString("infoLink");
 
-            saveImage(imageLink, isbn);
-            System.out.println("Picture was downloaded");
+            IMGDownloader object = new IMGDownloader(currentBookAdder);
+            object.start();
+            System.out.println("Program finished");
+            currentBookAdder.setTitle(title);
+            currentBookAdder.setPublishedYear(publishedDate);
+            currentBookAdder.setDescription(description);
+            for (int i = 0; i < authors.length; i++) {
+                currentBookAdder.pressAdd(authors[i]);
+            }
         }
         else {
             System.out.println("We couldn't find any book on your ISBN, Please Try again");
         }
     }
-
-    public static void saveImage(String imageUrl, String isbn) throws IOException {
-        URL url = new URL(imageUrl);
-
-        System.out.println("Start downloading");
-        long start = System.currentTimeMillis();
-
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream("./src/images/bookPhoto/" + isbn + ".jpg");
-
-        byte[] b = new byte[2048]; //Buffer
-        int length;
-
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
-        }
-
-        is.close();
-        os.close();
-
-        long finish = System.currentTimeMillis();
-        long timeElapsed = finish - start;
-        System.out.println("Finish downloading in " + timeElapsed + "ms");
-    }
+//
+//    public static void saveImage(String imageUrl, String isbn) throws IOException {
+//        URL url = new URL(imageUrl);
+//
+//        System.out.println("Start downloading");
+//        long start = System.currentTimeMillis();
+//
+//        InputStream is = url.openStream();
+//        OutputStream os = new FileOutputStream("./src/images/bookPhoto/" + isbn + ".jpg");
+//
+//        byte[] b = new byte[2048]; //Buffer
+//        int length;
+//
+//        while ((length = is.read(b)) != -1) {
+//            os.write(b, 0, length);
+//        }
+//
+//        is.close();
+//        os.close();
+//
+//        long finish = System.currentTimeMillis();
+//        long timeElapsed = finish - start;
+//        System.out.println("Finish downloading in " + timeElapsed + "ms");
+//    }
 
     public String getTitle() {
         return title;

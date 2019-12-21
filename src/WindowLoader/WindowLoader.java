@@ -1,12 +1,12 @@
 package WindowLoader;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -66,6 +66,26 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
+    public void loadPieChart(BorderPane borderPane){
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Available Books", 13),
+                        new PieChart.Data("Issued Books", 25),
+                        new PieChart.Data("Lost Books", 10));
+        final PieChart chart = new PieChart(pieChartData);
+        borderPane.setCenter(chart);
+    }
+
+    public void loadStudentHome(BorderPane borderPane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/StudentHomePage.fxml"));
+            borderPane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public void loadLineChart(GridPane statisticsPane){
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();

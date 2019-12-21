@@ -41,6 +41,8 @@ public class MainPageAdminController {
     @FXML
     private GridPane homePane;
     @FXML
+    private BorderPane homeBorderPane;
+    @FXML
     private GridPane librariansPane;
     @FXML
     private GridPane studentsPane;
@@ -60,9 +62,11 @@ public class MainPageAdminController {
 
     public void initialize() throws MalformedURLException {
 
+        mainController.initializeHome(homeBorderPane);
         mainController.loadUserDetails(labelUserName, avatar);
         mainController.initializeStudentTable(studentsBorderPane);
         mainController.initializeBookTable(booksBorderPane);
+        windowLoader.loadPieChart(homeBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
