@@ -30,9 +30,9 @@ public class Controller {
         String id = userSession.getUserId();
         try {
             Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT student_id, first_name, last_name, password FROM students WHERE student_id=?");
-            PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT librarian_id, first_name, last_name, password FROM librarian WHERE librarian_id=?");
-            PreparedStatement preparedStatement3 = connection.prepareStatement("SELECT admin_id, first_name, last_name, password FROM admin_table WHERE admin_id=?");
+            PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT student_id, first_name, last_name, password_code FROM students WHERE student_id=?");
+            PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT librarian_id, first_name, last_name, password_code FROM librarian WHERE librarian_id=?");
+            PreparedStatement preparedStatement3 = connection.prepareStatement("SELECT admin_id, first_name, last_name, password_code FROM admin_table WHERE admin_id=?");
             preparedStatement1.setString(1, id);
             preparedStatement2.setString(1, id);
             preparedStatement3.setString(1, id);
@@ -40,64 +40,56 @@ public class Controller {
             ResultSet resultSet2 = preparedStatement2.executeQuery();
             ResultSet resultSet3 = preparedStatement3.executeQuery();
             if (resultSet1.next()) {
-                person = 1;
                 username.setText(resultSet1.getString("student_id"));
                 firstname.setText(resultSet1.getString("first_name"));
                 lastname.setText(resultSet1.getString("last_name"));
-                oldpassword.setText(resultSet1.getString("password"));
+                person = 1;
             } else if (resultSet2.next()) {
-                person = 2;
                 username.setText(resultSet2.getString("librarian_id"));
                 firstname.setText(resultSet2.getString("first_name"));
                 lastname.setText(resultSet2.getString("last_name"));
-                oldpassword.setText(resultSet2.getString("password"));
+                person = 2;
             } else if (resultSet3.next()) {
-                person = 3;
                 username.setText(resultSet3.getString("admin_id"));
                 firstname.setText(resultSet3.getString("first_name"));
                 lastname.setText(resultSet3.getString("last_name"));
-                oldpassword.setText(resultSet3.getString("password"));
+                person = 3;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
     @FXML
     public void saveBtnHandler() {
         String oldPassword = "";
         try {
             Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT password FROM ? WHERE ?=?");
+            PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT password_code FROM students WHERE student_id=?");
+            PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT password_code FROM librarian WHERE librarian_id=?");
+            PreparedStatement preparedStatement3 = connection.prepareStatement("SELECT password_code FROM admin_table WHERE admin_id=?");
             ResultSet resultSet;
             switch (person) {
                 case 1:
-                    preparedStatement.setString(1, "students");
-                    preparedStatement.setString(2, "student_id");
-                    preparedStatement.setString(3, userSession.getUserId());
-                    resultSet = preparedStatement.executeQuery();
+                    preparedStatement1.setString(1, userSession.getUserId());
+                    resultSet = preparedStatement1.executeQuery();
                     resultSet.next();
-                    oldPassword = resultSet.getString("password");
+                    oldPassword = resultSet.getString("password_code");
                     break;
                 case 2:
-                    preparedStatement.setString(1, "librarian");
-                    preparedStatement.setString(2, "librarian_id");
-                    preparedStatement.setString(3, userSession.getUserId());
-                    resultSet = preparedStatement.executeQuery();
+                    preparedStatement2.setString(1, userSession.getUserId());
+                    resultSet = preparedStatement2.executeQuery();
                     resultSet.next();
-                    oldPassword = resultSet.getString("password");
+                    oldPassword = resultSet.getString("password_code");
                     break;
                 case 3:
-                    preparedStatement.setString(1, "admin_table");
-                    preparedStatement.setString(2, "admin_id");
-                    preparedStatement.setString(3, userSession.getUserId());
-                    resultSet = preparedStatement.executeQuery();
+                    preparedStatement3.setString(1, userSession.getUserId());
+                    resultSet = preparedStatement3.executeQuery();
                     resultSet.next();
-                    oldPassword = resultSet.getString("password");
+                    oldPassword = resultSet.getString("password_code");
                     break;
             }
-            if (oldPassword == oldpassword.getText()) {
-                if (newpassword.getText() == newpasswordagain.getText()) {
+            if (oldPassword.equals(oldpassword.getText())) {
+                if (newpassword.getText().equals(newpasswordagain.getText())) {
                     saveButtonHandler();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -119,29 +111,48 @@ public class Controller {
     private void saveButtonHandler() {
         try {
             Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement1 = connection.prepareStatement("UPDATE students SET first_name=?, last_name=?, password=? WHERE student_id=?");
-            PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE librarian SET first_name=?, last_name=?, password=? WHERE librarian_id=?");
-            PreparedStatement preparedStatement3 = connection.prepareStatement("UPDATE admin_table SET first_name=?, last_name=?, password=? WHERE admin_id=?");
+            PreparedStatement preparedStatement1 = connection.prepareStatement("UPDATE students SET first_name=?, last_name=?, password_code=? WHERE student_id=?");
+            PreparedStatement preparedStatement2 = connection.prepareStatement("UPDATE librarian SET first_name=?, last_name=?, password_code=? WHERE librarian_id=?");
+            PreparedStatement preparedStatement3 = connection.prepareStatement("UPDATE admin_table SET first_name=?, last_name=?, password_code=? WHERE admin_id=?");
             preparedStatement1.setString(1, firstname.getText());
             preparedStatement1.setString(2, lastname.getText());
             preparedStatement1.setString(3, newpassword.getText());
+            preparedStatement1.setString(4, userSession.getUserId());
 
             preparedStatement2.setString(1, firstname.getText());
             preparedStatement2.setString(2, lastname.getText());
             preparedStatement2.setString(3, newpassword.getText());
+            preparedStatement2.setString(4, userSession.getUserId());
 
             preparedStatement3.setString(1, firstname.getText());
             preparedStatement3.setString(2, lastname.getText());
             preparedStatement3.setString(3, newpassword.getText());
+            preparedStatement3.setString(4, userSession.getUserId());
+            Alert alert = null;
             switch (person) {
                 case 1:
                     preparedStatement1.executeUpdate();
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Update");
+                    alert.setHeaderText("Successfully Updated!");
+                    alert.showAndWait();
+                    cancelButtonHandler();
                     break;
                 case 2:
                     preparedStatement2.executeUpdate();
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Update");
+                    alert.setHeaderText("Successfully Updated!");
+                    alert.showAndWait();
+                    cancelButtonHandler();
                     break;
                 case 3:
                     preparedStatement3.executeUpdate();
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Update");
+                    alert.setHeaderText("Successfully Updated!");
+                    alert.showAndWait();
+                    cancelButtonHandler();
                     break;
             }
         } catch (SQLException ex) {

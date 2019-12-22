@@ -3,10 +3,8 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +16,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="1366.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1131.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <GridPane id="menuBackground" prefHeight="522.0" prefWidth="317.0"  stylesheets="@window-style.css" BorderPane.alignment="CENTER">
+      <GridPane id="menuBackground" prefHeight="522.0" prefWidth="317.0" stylesheets="@window-style.css" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -78,7 +76,7 @@
                         <String fx:value="menuBook" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="statisticsMenuItem" alignment="TOP_LEFT"  mnemonicParsing="false" onMouseClicked="#setStatisticsPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Statistics">
+                  <Button fx:id="statisticsMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setStatisticsPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Statistics">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -211,6 +209,35 @@
                         </BorderPane>
                      </children>
                   </GridPane>
+                  <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="booksBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane prefHeight="58.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="TOTAL BOOKS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initIssuedBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="ISSUED BOOKS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initLostBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="LOST BOOKS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                                 </children>
+                              </GridPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
                   <GridPane fx:id="studentsPane" style="-fx-background-color: #ccccb3;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -232,42 +259,13 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initStudentsTable" prefHeight="118.0" prefWidth="218.0" text="TOTAL STUDENTS" GridPane.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initFinedStudentsTable" prefHeight="118.0" prefWidth="218.0" text="FINED STUDENTS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBlockedStudentsTable" prefHeight="118.0" prefWidth="197.0" text="BLOCKED STUDENTS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initReservedStudentsTable" prefHeight="118.0" prefWidth="218.0" text="RESERVED STUDENTS" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="TOTAL STUDENTS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initFinedStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="FINED STUDENTS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBlockedStudentsTable" prefHeight="118.0" prefWidth="197.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="BLOCKED STUDENTS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initReservedStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="RESERVED STUDENTS" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
                                  </children>
                               </GridPane>
                            </top></BorderPane>
-                     </children>
-                  </GridPane>
-                  <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <BorderPane fx:id="booksBorderPane" prefHeight="200.0" prefWidth="200.0">
-                           <top>
-                              <GridPane prefHeight="58.0" prefWidth="799.0" BorderPane.alignment="CENTER">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBookTable" prefHeight="118.0" prefWidth="218.0" text="TOTAL BOOKS" GridPane.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initIssuedBookTable" prefHeight="118.0" prefWidth="218.0" text="ISSUED BOOKS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initLostBookTable" prefHeight="118.0" prefWidth="218.0" text="LOST BOOKS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
-                                 </children>
-                              </GridPane>
-                           </top>
-                        </BorderPane>
                      </children>
                   </GridPane>
                </children>

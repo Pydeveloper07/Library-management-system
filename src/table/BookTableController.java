@@ -66,7 +66,7 @@ public class BookTableController implements Initializable {
                     "SELECT book_group.isbn, category, author_name, descrip, title, " +
                             "published_date, quantity, available FROM book_group INNER JOIN authors ON " +
                             "book_group.isbn=authors.isbn");
-            if (resultSet.next()){
+            while (resultSet.next()){
                 oblist.add(new ModelBookTable(
                         resultSet.getString("isbn"),
                         resultSet.getString("category"),

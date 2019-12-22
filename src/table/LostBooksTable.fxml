@@ -33,7 +33,7 @@
    <top>
        <HBox alignment="TOP_CENTER" prefHeight="40.0" BorderPane.alignment="CENTER">
            <children>
-               <Label prefHeight="32.0" prefWidth="58.0" text="Search:">
+               <Label prefHeight="32.0" prefWidth="58.0" styleClass="window-title" stylesheets="@Table.css" text="Search:">
                    <font>
                        <Font size="17.0" />
                    </font>
@@ -46,7 +46,7 @@
                        <Insets />
                    </HBox.margin>
                </TextField>
-               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Found">
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="bevel-grey" stylesheets="@Table.css" text="Found">
                    <HBox.margin>
                        <Insets left="5.0" />
                    </HBox.margin>

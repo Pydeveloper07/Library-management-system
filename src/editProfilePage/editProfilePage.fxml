@@ -62,7 +62,7 @@
                </GridPane.margin>
             </TextField>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="290.0" text="Old Password" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <PasswordField fx:id="oldpassword" alignment="CENTER" prefHeight="25.0" prefWidth="292.0" text="Your Old Password" GridPane.columnSpan="2" GridPane.rowIndex="8">
+            <PasswordField fx:id="oldpassword" alignment="CENTER" prefHeight="25.0" prefWidth="292.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>

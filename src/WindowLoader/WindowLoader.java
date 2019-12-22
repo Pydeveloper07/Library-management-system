@@ -8,8 +8,10 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mainPage.MainPageAdminController;
@@ -44,7 +46,6 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
-
     public void loadMainWindow(int title){
         Stage stage = new Stage();
         Parent root = new BorderPane();
@@ -109,7 +110,6 @@ public class WindowLoader {
         final PieChart chart = new PieChart(pieChartData);
         borderPane.setCenter(chart);
     }
-
     public void loadStudentHome(BorderPane borderPane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/StudentHomePage.fxml"));
@@ -119,7 +119,6 @@ public class WindowLoader {
             ex.printStackTrace();
         }
     }
-
     public void loadLineChart(GridPane statisticsPane){
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -159,7 +158,6 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
-
     public void loadChargeStudentForm(){
         Stage stage = new Stage();
         Parent root;
@@ -175,5 +173,30 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
-
+    public void loadLoginWindow(){
+        Stage stage = new Stage();
+        Parent root = null;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../loginPage/logInPage.fxml"));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root, 608 , 690));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
+    public void loadEditProfileWindow(){
+        Stage stage = new Stage();
+        Parent root = null;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../editProfilePage/editProfilePage.fxml"));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root, 316 , 525));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
 }

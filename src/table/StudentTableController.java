@@ -43,7 +43,6 @@ public class StudentTableController implements Initializable {
         windowLoader.loadAddNewUserWindow();
     }
 
-
     private DBConnector connector = new DBConnector().getConnector();
 
     ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
@@ -239,6 +238,11 @@ public class StudentTableController implements Initializable {
             String id = modelTable.getId();
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
         }
         catch(SQLException ex){
             ex.printStackTrace();

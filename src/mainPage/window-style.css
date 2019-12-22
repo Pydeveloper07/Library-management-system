@@ -67,7 +67,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: rgb(0, 77, 26);
-    -fx-font-family: 'Righteous', cursive;
+    -fx-font-family: 'Baloo', cursive;
     -fx-font-size: 14px;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-cursor: hand;
