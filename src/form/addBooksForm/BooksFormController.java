@@ -167,10 +167,8 @@ public class BooksFormController implements Initializable {
         sendHttpRequest.call_me(isbn.getText(), this);
     }
     public void setPhoto(String url) {
-        System.out.println("Entered to setPhoto");
         Image image= new Image(url);
         photo.setImage(image);
-        System.out.println("Set to Photo");
     }
     public void setTitle(String txt) {
         title.setText(txt);
@@ -181,17 +179,13 @@ public class BooksFormController implements Initializable {
     public void setDescription(String txt) {
         description.setText(txt);
     }
-//    public void pressAdd(String txt) {
-//        boolean exists = false;
-//        for (Object obj: authorName.getItems()){
-//            if(obj.toString() == txt) {
-//                exists = true;
-//                break;
-//            }
-//        }
-//        if(!exists){
-//            authorName.getItems().add(txt);
-//            authorName.setValue("");
-//        }
-//    }
+    public void setIsbn(String txt) {
+        isbn.setText(txt);
+    }
+    public void setSubject(String txt) {
+        subject.setText(txt);
+    }
+    public void addAuthor(String txt) {
+        authorName.setText(txt);
+    }
 }

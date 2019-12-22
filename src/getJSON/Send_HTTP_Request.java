@@ -2,8 +2,8 @@ package getJSON;
 
 import form.addBooksForm.BooksFormController;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Window;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,21 +21,20 @@ public class Send_HTTP_Request {
 
     public void call_me(String isbn, BooksFormController currentBookAdder) throws Exception {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Look, an Information Dialog ✅");
-        alert.setContentText("I have a great message for you!");
-        alert.getButtonTypes().clear();
-
-        alert.showAndWait();
-
+        alert.setTitle("Loading...");
+        alert.setHeaderText("Loading Book Details");
+        alert.setContentText("");
+        alert.getButtonTypes().remove(ButtonType.OK);
+        Window alertWindow = alert.getDialogPane().getScene().getWindow();
+        alertWindow.setOnCloseRequest(event -> alertWindow.hide());
+        alert.show();
         String url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        // optional default is GET
         con.setRequestMethod("GET");
-        //add request header
         con.setRequestProperty("User-Agent", "Mozilla/5.0");
         int responseCode = con.getResponseCode();
+
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -48,7 +47,7 @@ public class Send_HTTP_Request {
         JSONObject myResponse = new JSONObject(response.toString());
 
         boolean found = myResponse.getInt("totalItems") > 0;
-        if (found) {
+        if (found && isbn.length() >= 10) {
             JSONObject item = myResponse.getJSONArray("items").getJSONObject(0);
             JSONObject volumeInfo = item.getJSONObject("volumeInfo");
             JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
@@ -57,6 +56,7 @@ public class Send_HTTP_Request {
 
             // Get Title
             title = volumeInfo.getString("title");
+            if (title.length() > 30) title = title.substring(0, 26).concat("...");
             // Get Authors[]
             authors = new String[authorsJSON.length()];
             for(int i=0; i < authors.length; i++) {
@@ -65,9 +65,10 @@ public class Send_HTTP_Request {
             // Get Publisher
             publisher = volumeInfo.getString("publisher");
             // Get Published Date
-            publishedDate = volumeInfo.getString("publishedDate").substring(0, 4);
+            publishedDate = volumeInfo.getString("publishedDate");
             // Get Description
             description = volumeInfo.getString("description");
+            if (description.length() > 300) description = description.substring(0, 296).concat("...");
             // Change ISBN to ISBN13 if possible
             for (int i = 0; i < industryIdentifiers.length(); i++) {
                 JSONObject current = industryIdentifiers.getJSONObject(i);
@@ -79,6 +80,7 @@ public class Send_HTTP_Request {
             pageCount = volumeInfo.getInt("pageCount");
             // Get Categories
             category = categoriesJSON.optString(0);
+            if (category.length() > 30) category = category.substring(0, 26).concat("...");
             // Get Book Cover Photo
             imageLink = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
             // Get Language
@@ -86,45 +88,24 @@ public class Send_HTTP_Request {
             // Get Info Link
             infoLink = volumeInfo.getString("infoLink");
 
-            IMGDownloader object = new IMGDownloader(currentBookAdder);
+            IMGDownloader object = new IMGDownloader(isbn, imageLink, currentBookAdder);
             object.start();
-            System.out.println("Program finished");
+            currentBookAdder.setIsbn(isbn);
             currentBookAdder.setTitle(title);
+            currentBookAdder.setSubject(category);
             currentBookAdder.setPublishedYear(publishedDate);
+            String author = authors[0];
+            for (int i = 1; i < authors.length; i++) author = author + (", " + authors[i]);
+            currentBookAdder.addAuthor(author);
             currentBookAdder.setDescription(description);
-            for (int i = 0; i < authors.length; i++) {
-//                currentBookAdder.pressAdd(authors[i]);
-            }
+
+            while (object.isAlive());
+            alertWindow.hide();
         }
         else {
-            System.out.println("We couldn't find any book on your ISBN, Please Try again");
+            alert.setContentText("Book was not found. Try to enter correct ISBN -");
         }
     }
-//
-//    public static void saveImage(String imageUrl, String isbn) throws IOException {
-//        URL url = new URL(imageUrl);
-//
-//        System.out.println("Start downloading");
-//        long start = System.currentTimeMillis();
-//
-//        InputStream is = url.openStream();
-//        OutputStream os = new FileOutputStream("./src/images/bookPhoto/" + isbn + ".jpg");
-//
-//        byte[] b = new byte[2048]; //Buffer
-//        int length;
-//
-//        while ((length = is.read(b)) != -1) {
-//            os.write(b, 0, length);
-//        }
-//
-//        is.close();
-//        os.close();
-//
-//        long finish = System.currentTimeMillis();
-//        long timeElapsed = finish - start;
-//        System.out.println("Finish downloading in " + timeElapsed + "ms");
-//    }
-
     public String getTitle() {
         return title;
     }
