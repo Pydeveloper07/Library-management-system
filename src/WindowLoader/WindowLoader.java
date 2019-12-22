@@ -1,5 +1,6 @@
 package WindowLoader;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +67,7 @@ public class WindowLoader {
         stage.setScene(new Scene(root));
         stage.setMaximized(true);
         stage.setTitle("IUT Library Management System");
+        stage.setOnCloseRequest(e-> Platform.exit());
         stage.show();
     }
     public void loadAddNewUserWindow(){

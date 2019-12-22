@@ -19,13 +19,11 @@ public class LoginPageController {
     private DBConnector connector = new DBConnector().getConnector();
     private Connection connection;
     @FXML
-    Label pleaseLoginLabel;
+    private Label pleaseLoginLabel;
     @FXML
     private TextField textField;
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private Button loginBtn;
     @FXML
     private Button closeBtn;
     @FXML

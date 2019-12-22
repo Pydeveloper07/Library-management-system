@@ -27,6 +27,7 @@
 }
 .table-view .table-cell{
     -fx-text-fill: black;
+    -fx-alignment: CENTER;
 }
 .table-row-cell{
     -fx-table-cell-border-color, #616161;

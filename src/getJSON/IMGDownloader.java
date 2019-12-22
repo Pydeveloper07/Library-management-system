@@ -19,7 +19,7 @@ public class IMGDownloader extends Thread {
     public void run() {
         try {
             URL url = new URL(imageLink);
-            String destination = "./Book_Covers/" + isbn + ".jpg";
+            String destination = "./src/images/bookPhoto/" + isbn + ".jpg";
 
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destination);
@@ -34,7 +34,7 @@ public class IMGDownloader extends Thread {
             is.close();
             os.close();
 
-            bookForm.setPhoto("file:../../Book_Covers/" + isbn + ".jpg");
+            bookForm.setPhoto("images/bookPhoto/" + isbn + ".jpg");
         } catch (Exception e) {
         }
     }

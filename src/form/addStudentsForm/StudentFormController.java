@@ -20,15 +20,15 @@ public class StudentFormController implements Initializable {
     @FXML
     private ComboBox<String> facultyCombo = new ComboBox<>();
     @FXML
-    TextField id;
+    private TextField id;
     @FXML
-    TextField name;
+    private TextField name;
     @FXML
-    TextField surname;
+    private TextField surname;
     @FXML
-    TextField contact_number;
+    private TextField contact_number;
     @FXML
-    TextField email;
+    private TextField email;
     @FXML
     TextField password;
     private DBConnector connector = new DBConnector().getConnector();

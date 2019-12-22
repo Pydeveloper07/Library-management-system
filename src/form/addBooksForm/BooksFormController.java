@@ -25,25 +25,25 @@ import java.util.ResourceBundle;
 public class BooksFormController implements Initializable {
 
     @FXML
-    TextField isbn;
+    private TextField isbn;
     @FXML
-    Button getData;
+    private Button getData;
     @FXML
-    TextField title;
+    private TextField title;
     @FXML
-    TextArea description;
+    private TextArea description;
     @FXML
-    ImageView photo;
+    private ImageView photo;
     @FXML
-    Button cancel;
+    private Button cancel;
     @FXML
-    Spinner<Integer> spinner = new Spinner<Integer>();
+    private Spinner<Integer> spinner = new Spinner<Integer>();
     @FXML
-    DatePicker publishedYear;
+    private DatePicker publishedYear;
     @FXML
-    TextField subject;
+    private TextField subject;
     @FXML
-    TextField authorName;
+    private TextField authorName;
 
     private Send_HTTP_Request sendHttpRequest = new Send_HTTP_Request();
     private DBConnector connector = new DBConnector().getConnector();
