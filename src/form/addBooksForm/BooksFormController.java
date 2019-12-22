@@ -39,15 +39,11 @@ public class BooksFormController implements Initializable {
     @FXML
     Spinner<Integer> spinner = new Spinner<Integer>();
     @FXML
-    ComboBox<String> authorName = new ComboBox<>();
-    @FXML
-    Button addAuthorName;
-    @FXML
     DatePicker publishedYear;
     @FXML
-    Button deleteAuthorName;
-    @FXML
     TextField subject;
+    @FXML
+    TextField authorName;
 
     private Send_HTTP_Request sendHttpRequest = new Send_HTTP_Request();
     private DBConnector connector = new DBConnector().getConnector();
@@ -64,8 +60,6 @@ public class BooksFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Value factory.
         initSpinner();
-        authorName.setPromptText("Author Name");
-        authorName.setEditable(true);
     }
     @FXML
     private void initSpinner() {
@@ -118,12 +112,7 @@ public class BooksFormController implements Initializable {
             preparedStatement.executeUpdate();
 
             preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthors);
-            String author = "";
-            for (Object obj: authorName.getItems()){
-                author +=authorName.getValue();
-            }
-            System.out.println(author);
-            preparedStatement.setString(1,author);
+            preparedStatement.setString(1, authorName.getText());
             preparedStatement.setString(2, isbn.getText());
             preparedStatement.executeUpdate();
 
@@ -142,7 +131,7 @@ public class BooksFormController implements Initializable {
     @FXML
     private void handleEventSave() throws SQLException {
         if (isbn.getText().isEmpty()||title.getText().isEmpty()||
-                authorName.getItems().isEmpty()||
+                authorName.getText().isEmpty()||
                 description.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -163,28 +152,9 @@ public class BooksFormController implements Initializable {
         isbn.clear();
         title.clear();
         description.clear();
-        authorName.getItems().removeAll();
+        authorName.clear();
         subject.clear();
         photo.setImage(new Image("images/demoBook.png"));
-    }
-
-    public void handleAdd() {
-        boolean exists = false;
-        for (Object obj: authorName.getItems()){
-            if(obj.toString() == authorName.getValue()) {
-                exists = true;
-                break;
-            }
-        }
-        if(!exists){
-            authorName.getItems().add(authorName.getValue());
-            authorName.setValue("");
-        }
-    }
-
-    public void handleDelete() {
-        authorName.getItems().remove(authorName.getValue());
-        authorName.setValue("");
     }
 
     public void cancelButtonHandler()
@@ -211,17 +181,17 @@ public class BooksFormController implements Initializable {
     public void setDescription(String txt) {
         description.setText(txt);
     }
-    public void pressAdd(String txt) {
-        boolean exists = false;
-        for (Object obj: authorName.getItems()){
-            if(obj.toString() == txt) {
-                exists = true;
-                break;
-            }
-        }
-        if(!exists){
-            authorName.getItems().add(txt);
-            authorName.setValue("");
-        }
-    }
+//    public void pressAdd(String txt) {
+//        boolean exists = false;
+//        for (Object obj: authorName.getItems()){
+//            if(obj.toString() == txt) {
+//                exists = true;
+//                break;
+//            }
+//        }
+//        if(!exists){
+//            authorName.getItems().add(txt);
+//            authorName.setValue("");
+//        }
+//    }
 }

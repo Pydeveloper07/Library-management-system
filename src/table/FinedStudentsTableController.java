@@ -97,10 +97,15 @@ public class FinedStudentsTableController implements Initializable {
     }
     @FXML
     public void deleteUserTable(){
-
-//        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
-//                t.getTablePosition().getRow())  ) ;
-//        //remove selected item from the table list
-//        data.remove(currentPerson);
+        FinedStudentsModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM fined_students WHERE student_id=?");
+            String id = modelTable.getId();
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 }

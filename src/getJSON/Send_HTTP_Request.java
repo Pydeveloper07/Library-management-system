@@ -93,7 +93,7 @@ public class Send_HTTP_Request {
             currentBookAdder.setPublishedYear(publishedDate);
             currentBookAdder.setDescription(description);
             for (int i = 0; i < authors.length; i++) {
-                currentBookAdder.pressAdd(authors[i]);
+//                currentBookAdder.pressAdd(authors[i]);
             }
         }
         else {

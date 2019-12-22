@@ -2,6 +2,8 @@ package table;
 
 import WindowLoader.WindowLoader;
 import dataBase.DBConnector;
+import form.blockStudentForm.BlockController;
+import form.chargeStudentForm.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -228,20 +230,31 @@ public class StudentTableController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
+
     @FXML
     public void deleteUser(){
-
-//        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
-//                t.getTablePosition().getRow())  ) ;
-//        //remove selected item from the table list
-//        data.remove(currentPerson);
+        ModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM students WHERE student_id=?");
+            String id = modelTable.getId();
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
+
     @FXML
     public void blockUser(){
-
+        ModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        BlockController.setUserId(modelTable.getId());
+        windowLoader.loadBlockedStudentForm();
     }
     @FXML
     public void chargeUser(){
-
+        ModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        Controller.setUserId(modelTable.getId());
+        windowLoader.loadChargeStudentForm();
     }
 }

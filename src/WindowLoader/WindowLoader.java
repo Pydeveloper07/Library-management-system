@@ -27,6 +27,23 @@ public class WindowLoader {
         }
         return windowLoader;
     }
+
+    public void loadBlockedStudentForm(){
+        Stage stage = new Stage();
+        Parent root;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../form/blockStudentForm/BlockReason.fxml"));
+            stage.setScene(new Scene(root, 510 , 357));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Block Student");
+        stage.setResizable(false);
+        stage.show();
+    }
+
     public void loadMainWindow(int title){
         Stage stage = new Stage();
         Parent root = new BorderPane();
@@ -140,4 +157,21 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
+
+    public void loadChargeStudentForm(){
+        Stage stage = new Stage();
+        Parent root;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../form/chargeStudentForm/ChargeAmount.fxml"));
+            stage.setScene(new Scene(root, 350 , 350));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Charge Student");
+        stage.setResizable(false);
+        stage.show();
+    }
+
 }
