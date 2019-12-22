@@ -15,20 +15,64 @@
     -fx-background-radius: 20px 100px 0px 20px;
     -fx-font-family: 'Baloo', cursive;
     -fx-font-size: 18pt;
+    -fx-cursor: hand;
 }
-.button:pressed:hover {
+.menu-items:pressed:hover {
     -fx-background-color: rgb(16, 128, 5);
     -fx-text-fill: white;
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
+    -fx-cursor: hand;
 }
-.button:hover {
+.menu-items:hover {
     -fx-background-color: rgb(16, 128, 5);
     -fx-text-fill: white;
     -fx-scale-y: 1.1;
+    -fx-cursor: hand;
 }
 #top-label{
     -fx-font-family: 'Bungee Inline', cursive;
     -fx-text-fill: white;
     -fx-font-size: 24px;
+}
+#menuBackground {
+    -fx-background-image: url("../images/menuBack2.jpg");
+    -fx-background-size: cover, auto;
+}
+.menuHome {
+    -fx-graphic: url("../images/home3.png");
+}
+.menuLibrarian {
+    -fx-graphic: url("../images/librarian.png");
+}
+.menuStudent {
+    -fx-graphic: url("../images/student2.png");
+}
+.menuBook {
+    -fx-graphic: url("../images/book.png");
+}
+.menuStatistics {
+    -fx-graphic: url("../images/statistics.png");
+}
+.name {
+    -fx-text-fill: white;
+    -fx-font-family: 'Baloo', cursive;
+    -fx-font-size: 20px;
+}
+.bevel-grey {
+    -fx-background-color:
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: rgb(0, 77, 26);
+    -fx-font-family: 'Righteous', cursive;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-cursor: hand;
+}
+.bevel-grey: hover {
+    -fx-text-fill: rgb(115, 230, 0);
+    -fx-cursor: hand;
 }

@@ -11,7 +11,7 @@
     src: url('fonts//FrederickatheGreat-Regular.ttf');
 }
 .main{
-    -fx-background-image: url("images/back2.jpg");
+    -fx-background-image: url("images/back3.jpg");
 }
 .top-panel{
     -fx-background-color: rgb(235, 235, 235);

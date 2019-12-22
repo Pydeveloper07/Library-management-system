@@ -80,7 +80,6 @@ public class MainPageUserController {
         //Set Home Page as default
         homePane.toFront();
         topLabel.setText(mainController.letterSpace(homeMenuItem.getText().toUpperCase(), 4));
-        homeMenuItem.setStyle("-fx-background-color: rgb(16, 128, 5); -fx-text-fill: white;");
 
         //Setting letter spaced menu item names
         for(Button button:buttons){
