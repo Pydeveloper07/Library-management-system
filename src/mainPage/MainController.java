@@ -33,7 +33,7 @@ public class MainController {
 
     //load user photo and name
     public void loadUserDetails(Label userNameLabel, Circle avatar){
-        userNameLabel.setText(userSession.getFirstName() + " " + userSession.getLastName());
+        userNameLabel.setText(userSession.getFirstName().toUpperCase() + " " + userSession.getLastName().toUpperCase());
         //Avatar setting
         File file = new File("./src/images/userPhoto/"+userSession.getUserId()+".jpg");
         if (file.exists()) {
@@ -53,6 +53,37 @@ public class MainController {
             ex.printStackTrace();
         }
     }
+
+    public void initializeHome(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/homePage.fxml"));
+            pane.setTop(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void initializeStudentHome(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/StudentHomePage.fxml"));
+            pane.setTop(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void initializeLibrariansTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/LibrariansTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
     public void initializeBookTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/BookTable.fxml"));
@@ -65,6 +96,15 @@ public class MainController {
     public void initializeIssuedBookTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/IssuedBooksTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void initializeLostBookTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/LostBooksTable.fxml"));
             pane.setCenter(fxmlLoader.load());
         }
         catch(Exception ex){

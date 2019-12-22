@@ -3,10 +3,7 @@ package form.addStudentsForm;
 import dataBase.DBConnector;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -20,8 +17,6 @@ import java.util.ResourceBundle;
 public class StudentFormController implements Initializable {
     @FXML
     private Button cancelBtn;
-    @FXML
-    private Label labelWarn;
     @FXML
     private ComboBox<String> facultyCombo = new ComboBox<>();
     @FXML
@@ -52,14 +47,17 @@ public class StudentFormController implements Initializable {
                 surname.getText().isEmpty()||contact_number.getText().isEmpty()||
                 email.getText().isEmpty()||password.getText().isEmpty())
         {
-            labelWarn.setText("FILL ALL FIELDS");
-            labelWarn.setTextFill(Color.RED);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("Please, fill all necessary fields!");
+            alert.showAndWait();
         }
         else{
             saveData();
-            labelWarn.setText("Successfully inserted");
-            labelWarn.setTextFill(Color.GREEN);
-
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information!");
+            alert.setHeaderText("Successfully inserted");
+            alert.showAndWait();
         }
     }
 

@@ -1,0 +1,59 @@
+.button{
+-fx-background-color:#7baee0;
+-fx-font-size: 8pt;
+-fx-font-weight: bold;
+-fx-border-color: #0a1961;
+-fx-border-radius: 5px;
+-fx-background-radius: 5px;
+}
+.button:hover{
+-fx-background-color: #136abf;
+-fx-text-fill: white;
+-fx-border-color: #136abf;
+}
+#mainwindow {
+-fx-background-color: #ccccff;
+}
+#newLibrarian
+{
+    -fx-font-family: "Elephant";
+    -fx-font-size: 20;
+    -fx-text-fill: #19648a
+}
+#label
+{
+    -fx-font-family: "Lucida Fax";
+    -fx-font-size: 15;
+    -fx-text-fill: #19648a
+}
+.record-sales {
+    -fx-padding: 5 5 5 5;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #18bdde 0%, #903b12 100%),
+        #1389a3,
+        #127390,
+        radial-gradient(center 50% 50%, radius 100%, #3dbbf5, #2ca9c5);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+.record-sales:hover {
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #18bdde 0%, #903b12 100%),
+        #1389a3,
+        #127390,
+        radial-gradient(center 50% 50%, radius 100%, #4bc5ea, #2ca9c5);
+    -fx-cursor: hand;
+}
+.record-sales:pressed {
+    -fx-padding: 3 7 5 7;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+    -fx-cursor: hand;
+}
+.record-sales Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #006aa3 , 0,0,0,2 );
+}

@@ -11,7 +11,7 @@
     src: url('fonts//FrederickatheGreat-Regular.ttf');
 }
 .main{
-    -fx-background-image: url("images/fon4.jpg");
+    -fx-background-image: url("images/back2.jpg");
 }
 .top-panel{
     -fx-background-color: rgb(235, 235, 235);
@@ -36,7 +36,7 @@
 }
 .log-in-title{
     -fx-font-size: 22pt;
-    -fx-text-fill: rgb(47, 51, 51);
+    -fx-text-fill: rgb(0, 51, 153);
     -fx-letter-space: 5px;
     -fx-font-family: 'Baloo Bhai', cursive;
 }
@@ -48,22 +48,23 @@
 }
 .username-and-password{
     -fx-font-size:14pt;
-    -fx-text-fill: rgb(155, 40, 147);
-    -fx-font-family: 'Fredericka the Great', cursive;
+    -fx-text-fill: rgb(0, 51, 153);
+    -fx-font-family: 'Baloo Bhai', cursive;
 }
 .log-in-button{
-    -fx-background-color: rgba(0, 255, 0, 0.4);
-    -fx-border-color: rgb(215, 35, 232);
+    -fx-background-color: rgba(102, 179, 255);
+    -fx-border-color: rgb(102, 102, 204);
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
     -fx-font-size: 13pt;
     -fx-text-fill: rgba(0, 0, 0, 0.7);
     -fx-font-family: 'Righteous', cursive;
+    -fx-cursor: hand;
 }
 
 .log-in-button:hover{
-    -fx-background-color: rgba(0, 121, 33, 1);
-    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-background-color: rgba(0, 0, 153);
+    -fx-text-fill: rgba(230, 247, 255);
 }
 .window-title{
     -fx-font-size: 14pt;

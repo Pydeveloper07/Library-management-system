@@ -8,37 +8,32 @@ email VARCHAR(30),
 password_code VARCHAR(15)NOT NULL,
 PRIMARY KEY(student_id)
 );
-CREATE TABLE authors(
-author_id INT GENERATED ALWAYS AS IDENTITY,
-first_name VARCHAR(20),
-last_name VARCHAR(20),
-PRIMARY KEY(author_id)
-);
 CREATE TABLE book_group(
-isbn INT NOT NULL,
+isbn VARCHAR(13) NOT NULL,
 category VARCHAR(30),
 descrip VARCHAR(305),
 title VARCHAR(30),
+published_date DATE,
 quantity INT NOT NULL DEFAULT 0,
 available INT NOT NULL DEFAULT 0,
 PRIMARY KEY(isbn)
 );
-CREATE TABLE author_books(
-author_id INT NOT NULL,
-isbn INT NOT NULL, 
-PRIMARY KEY(author_id, isbn),
-FOREIGN KEY(author_id) REFERENCES authors(author_id) ON DELETE CASCADE,
+CREATE TABLE authors(
+author_id INT GENERATED ALWAYS AS IDENTITY,
+author_name VARCHAR(100),
+isbn VARCHAR(13),
+PRIMARY KEY(author_id),
 FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE book(
 book_id INT GENERATED ALWAYS AS IDENTITY,
-isbn INT NOT NULL,
+isbn VARCHAR(13) NOT NULL,
 PRIMARY KEY(book_id),
 FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE lost_books(
 book_id INT NOT NULL,
-isbn INT NOT NULL,
+isbn VARCHAR(13) NOT NULL,
 student_id VARCHAR(8) NOT NULL,
 lost_date DATE,
 PRIMARY KEY(book_id),
@@ -80,7 +75,7 @@ FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE
 );
 CREATE TABLE waiting_list(
 student_id VARCHAR(8) NOT NULL,
-isbn INT NOT NULL,
+isbn VARCHAR(13) NOT NULL,
 reservation_date DATE,
 waiting_until DATE,
 PRIMARY KEY(student_id, isbn),
@@ -88,7 +83,7 @@ FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE,
 FOREIGN KEY(isbn) REFERENCES book_group(isbn) ON DELETE CASCADE
 );
 CREATE TABLE ordered_books(
-isbn INT NOT NULL,
+isbn VARCHAR(13) NOT NULL,
 student_id VARCHAR(8) NOT NULL,
 issued_date DATE,
 due_date DATE,

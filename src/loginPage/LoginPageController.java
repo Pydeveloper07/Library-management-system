@@ -42,10 +42,10 @@ public class LoginPageController {
     private Button minBtn;
     public void mouseClicked(MouseEvent event){
         if(event.getSource() == textField){
-            textField.setStyle("-fx-background-color: rgb(255, 255, 119);");
+            textField.setStyle("-fx-background-color: rgb(128, 191, 255);");
         }
         else{
-            passwordField.setStyle("-fx-background-color: rgb(255, 255, 119);");
+            passwordField.setStyle("-fx-background-color: rgb(128, 191, 255);");
         }
     }
     public void closeButtonClickedHandler(MouseEvent event){

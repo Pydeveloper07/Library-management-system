@@ -41,6 +41,8 @@ public class MainPageAdminController {
     @FXML
     private GridPane homePane;
     @FXML
+    private BorderPane homeBorderPane;
+    @FXML
     private GridPane librariansPane;
     @FXML
     private GridPane studentsPane;
@@ -53,6 +55,8 @@ public class MainPageAdminController {
     @FXML
     private BorderPane booksBorderPane;
     @FXML
+    private BorderPane librariansBorderPane;
+    @FXML
     private Circle avatar;
     @FXML
     private Label labelUserName;
@@ -62,7 +66,9 @@ public class MainPageAdminController {
 
         mainController.loadUserDetails(labelUserName, avatar);
         mainController.initializeTotalStudentsTable(studentsBorderPane);
+        windowLoader.loadPieChart(homeBorderPane);
         mainController.initializeBookTable(booksBorderPane);
+        mainController.initializeLibrariansTable(librariansBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -86,11 +92,15 @@ public class MainPageAdminController {
     }
     @FXML
     public void initBookTable(){
-        mainController.initializeIssuedBookTable(booksBorderPane);
+        mainController.initializeBookTable(booksBorderPane);
     }
     @FXML
     public void initIssuedBookTable(){
         mainController.initializeIssuedBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initLostBookTable(){
+        mainController.initializeLostBookTable(booksBorderPane);
     }
     @FXML
     public void initFinedStudentsTable(){

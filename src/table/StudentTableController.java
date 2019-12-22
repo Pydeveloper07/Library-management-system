@@ -229,12 +229,19 @@ public class StudentTableController implements Initializable {
         table.setItems(sortedData);
     }
     @FXML
-    public void deleteUserTable(){
+    public void deleteUser(){
 
 //        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
 //                t.getTablePosition().getRow())  ) ;
 //        //remove selected item from the table list
 //        data.remove(currentPerson);
     }
+    @FXML
+    public void blockUser(){
 
+    }
+    @FXML
+    public void chargeUser(){
+
+    }
 }

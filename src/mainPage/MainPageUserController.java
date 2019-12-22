@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -37,6 +38,8 @@ public class MainPageUserController {
     @FXML
     private Button deleteBookBtn;
     @FXML
+    private Button issueBookBtn;
+    @FXML
     private Button booksMenuItem;
     @FXML
     private Button statisticsMenuItem;
@@ -52,6 +55,10 @@ public class MainPageUserController {
     @FXML
     private GridPane statisticsPane;
     @FXML
+    private BorderPane booksBorderPane;
+    @FXML
+    private BorderPane studentsBorderPane;
+    @FXML
     private Circle avatar;
     @FXML
     private Label labelUserName;
@@ -61,6 +68,8 @@ public class MainPageUserController {
     public void initialize() throws MalformedURLException {
 
         mainController.loadUserDetails(labelUserName, avatar);
+        mainController.initializeBookTable(booksBorderPane);
+        mainController.initializeStudentHome(studentsBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -87,6 +96,8 @@ public class MainPageUserController {
         newBookBtn.setManaged(false);
         deleteBookBtn.setVisible(false);
         deleteBookBtn.setManaged(false);
+        issueBookBtn.setVisible(false);
+        issueBookBtn.setManaged(false);
     }
     @FXML
     public void setHomePane(MouseEvent event){
@@ -99,6 +110,43 @@ public class MainPageUserController {
     @FXML
     public void setStatisticsPane(MouseEvent event){
         mainController.setPane(event, statisticsPane, buttons, topLabel);
+    }
+    @FXML
+    public void setLibrariansPane(MouseEvent event) {
+        mainController.setPane(event, librariansPane, buttons, topLabel);
+    }
+
+    @FXML
+    public void setStudentsPane(MouseEvent event) {
+        mainController.setPane(event, studentsPane, buttons, topLabel);
+    }
+    @FXML
+    public void initStudentsTable(){
+        mainController.initializeTotalStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initFinedStudentsTable(){
+        mainController.initializeFinedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initBlockedStudentsTable(){
+        mainController.initializeBlockedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initReservedStudentsTable(){
+        mainController.initializeReservedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initBookTable(){
+        mainController.initializeBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initIssuedBookTable(){
+        mainController.initializeIssuedBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initLostBookTable(){
+        mainController.initializeLostBookTable(booksBorderPane);
     }
     @FXML
     public void setAvatar(){

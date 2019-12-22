@@ -12,6 +12,14 @@ public class ModelTable {
         this.contact_num = contact_num;
         this.email = email;
     }
+    public ModelTable(String id, String name, String surname, String contact_num, String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.faculty = faculty;
+        this.contact_num = contact_num;
+        this.email = email;
+    }
 
     public String getId() {
         return id;

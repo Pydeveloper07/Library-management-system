@@ -16,6 +16,17 @@
     -fx-font-family: 'Baloo', cursive;
     -fx-font-size: 18pt;
 }
+.button:pressed:hover {
+    -fx-background-color: rgb(16, 128, 5);
+    -fx-text-fill: white;
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+.button:hover {
+    -fx-background-color: rgb(16, 128, 5);
+    -fx-text-fill: white;
+    -fx-scale-y: 1.1;
+}
 #top-label{
     -fx-font-family: 'Bungee Inline', cursive;
     -fx-text-fill: white;

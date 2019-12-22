@@ -43,6 +43,8 @@ public class MainPageLibrarianController {
     @FXML
     private GridPane librariansPane;
     @FXML
+    private BorderPane homeBorderPane;
+    @FXML
     private GridPane studentsPane;
     @FXML
     private GridPane booksPane;
@@ -50,6 +52,8 @@ public class MainPageLibrarianController {
     private GridPane statisticsPane;
     @FXML
     private BorderPane studentsBorderPane;
+    @FXML
+    private BorderPane booksBorderPane;
     @FXML
     private Circle avatar;
     @FXML
@@ -61,6 +65,8 @@ public class MainPageLibrarianController {
 
         mainController.loadUserDetails(labelUserName, avatar);
         mainController.initializeTotalStudentsTable(studentsBorderPane);
+        mainController.initializeBookTable(booksBorderPane);
+        windowLoader.loadPieChart(homeBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);
@@ -88,6 +94,10 @@ public class MainPageLibrarianController {
     @FXML
     public void setStudentsPane(MouseEvent event){
         mainController.setPane(event, studentsPane, buttons, topLabel);
+    }
+    @FXML
+    public void setLibrariansPane(MouseEvent event) {
+        mainController.setPane(event, librariansPane, buttons, topLabel);
     }
     @FXML
     public void setBooksPane(MouseEvent event){
@@ -120,6 +130,18 @@ public class MainPageLibrarianController {
     @FXML
     public void initReservedStudentsTable(){
         mainController.initializeReservedStudentsTable(studentsBorderPane);
+    }
+    @FXML
+    public void initBookTable(){
+        mainController.initializeBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initIssuedBookTable(){
+        mainController.initializeIssuedBookTable(booksBorderPane);
+    }
+    @FXML
+    public void initLostBookTable(){
+        mainController.initializeLostBookTable(booksBorderPane);
     }
     @FXML
     public void setAvatar(){

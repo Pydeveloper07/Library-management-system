@@ -1,5 +1,6 @@
 package table;
 
+import WindowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,11 +29,13 @@ public class BookTableController implements Initializable {
     @FXML
     private TableColumn<ModelBookTable,String> col_title;
     @FXML
-    private TableColumn<ModelBookTable,String> col_author;
+    private TableColumn<ModelBookTable,String> col_author_name;
     @FXML
     private TableColumn<ModelBookTable,String> col_category;
     @FXML
     private TableColumn<ModelBookTable,String> col_descrip;
+    @FXML
+    private TableColumn<ModelBookTable,String> col_published_date;
     @FXML
     private TableColumn<ModelBookTable,String> col_quantity;
     @FXML
@@ -44,23 +47,33 @@ public class BookTableController implements Initializable {
 
     PreparedStatement preparedStatement;
     Connection connection;
+    private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
 
+
+    @FXML
+    private void addNewBook(){
+        windowLoader.loadAddNewBookWindow();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
         try {
             connection = connector.getConnection();
             ResultSet resultSet=connection.createStatement().executeQuery(
-                    "SELECT book_group.isbn, category, first_name, last_name, descrip, title, quantity, available FROM book_group INNER JOIN author_books ON " +
-                            "book_group.isbn=author_books.isbn INNER JOIN authors ON author_books.author_id=authors.author_id");
+                    "SELECT book_group.isbn, category, author_name, descrip, title, " +
+                            "published_date, quantity, available FROM book_group INNER JOIN authors ON " +
+                            "book_group.isbn=authors.isbn");
             if (resultSet.next()){
                 oblist.add(new ModelBookTable(
                         resultSet.getString("isbn"),
                         resultSet.getString("category"),
-                        resultSet.getString("first_name") + resultSet.getString("last_name"),
+                        resultSet.getString("author_name"),
                         resultSet.getString("descrip"),
                         resultSet.getString("title"),
+                        resultSet.getString("published_date"),
                         resultSet.getString("quantity"),
                         resultSet.getString("available")
                         ));
@@ -71,9 +84,9 @@ public class BookTableController implements Initializable {
 
         col_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
 
-        col_title.setCellValueFactory(new PropertyValueFactory<>("category"));
-        col_title.setCellFactory(TextFieldTableCell.forTableColumn());
-        col_title.setOnEditCommit(
+        col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        col_category.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_category.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
@@ -98,9 +111,9 @@ public class BookTableController implements Initializable {
                 }
         );
 
-        col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
-        col_author.setCellFactory(TextFieldTableCell.forTableColumn());
-        col_author.setOnEditCommit(
+        col_author_name.setCellValueFactory(new PropertyValueFactory<>("author_name"));
+        col_author_name.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_author_name.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
@@ -111,9 +124,9 @@ public class BookTableController implements Initializable {
                         try {
                             connection = connector.getConnection();
                             PreparedStatement statement = connection.prepareStatement(
-                                    "UPDATE authors SET first_name=? last_name=? WHERE author_id=?");
+                                    "UPDATE authors SET author_name=? WHERE isbn=?");
                             statement.setString(1, modelBookTable.getAuthor());
-                            statement.setString(2, modelBookTable.getCategory());
+                            statement.setString(2, modelBookTable.getIsbn());
                             statement.executeUpdate();
                             statement.close();
                             connection.close();
@@ -177,6 +190,32 @@ public class BookTableController implements Initializable {
                 }
         );
 
+        col_published_date.setCellValueFactory(new PropertyValueFactory<>("published_date"));
+        col_published_date.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_published_date.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<ModelBookTable, String> t) {
+                        ModelBookTable modelBookTable = table.getSelectionModel().getSelectedItem();
+                        ((ModelBookTable) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setTitle(t.getNewValue());
+                        try {
+                            connection = connector.getConnection();
+                            PreparedStatement statement = connection.prepareStatement(
+                                    "UPDATE book_group SET published_date=? WHERE isbn=?");
+
+                            statement.setString(1, modelBookTable.getPublished_date());
+                            statement.setString(2, modelBookTable.getIsbn());
+                            statement.executeUpdate();
+                            statement.close();
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
         col_quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         col_quantity.setCellFactory(TextFieldTableCell.forTableColumn());
 

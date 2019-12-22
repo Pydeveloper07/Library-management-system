@@ -8,14 +8,18 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class BooksFormController implements Initializable {
@@ -39,9 +43,11 @@ public class BooksFormController implements Initializable {
     @FXML
     Button addAuthorName;
     @FXML
-    TextField publishedYear;
+    DatePicker publishedYear;
     @FXML
     Button deleteAuthorName;
+    @FXML
+    TextField subject;
 
     private Send_HTTP_Request sendHttpRequest = new Send_HTTP_Request();
     private DBConnector connector = new DBConnector().getConnector();
@@ -84,56 +90,59 @@ public class BooksFormController implements Initializable {
         Image image= new Image(selectedFile.toURI().toString());
         photo.setImage(image);
 
+        try {
+            ImageIO.write(ImageIO.read(
+                    new File(selectedFile.toString())),
+                    "jpg",
+                    new File("./src/images/bookPhoto/"+isbn.getText()+".jpg"));
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
     }
 
 
     @FXML
-    private String saveData() throws SQLException {
-
-        String insertAuthors ="INSERT INTO authors (first_name,last_name) VALUES (?,?)";
-        String insertBook_group ="INSERT INTO book_group (isbn, descrip, title) VALUES (?,?,?)";
-        //String insertAuthor_books ="INSERT INTO author_books (isbn) VALUES (?)";
+    private void saveData() throws SQLException {
+        String insertBook_group ="INSERT INTO book_group (isbn, category, descrip, title, published_date) VALUES (?,?,?,?,?)";
+        String insertAuthors ="INSERT INTO authors (author_name,isbn) VALUES (?,?)";
         String insertBook ="INSERT INTO book (isbn) VALUES (?)";
         preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthors);
-        for (Object obj: authorName.getItems()){
-            String[] arrOfStr = obj.toString().split(" ", 2);
-            if(arrOfStr.length==1){
-            preparedStatement.setString(1,arrOfStr[0]);
-            preparedStatement.setString(2,"");
-            }else{
-                preparedStatement.setString(1,arrOfStr[0]);
-                preparedStatement.setString(2,arrOfStr[1]);
-            }
-        }
+
         try{
-        int a=Integer.parseInt(isbn.getText());
-
-
-
             preparedStatement = (PreparedStatement) connection.prepareStatement(insertBook_group);
-            preparedStatement.setInt(1, a);
-            preparedStatement.setString(2, description.getText());
-            preparedStatement.setString(3, title.getText());
+            preparedStatement.setString(1, isbn.getText());
+            preparedStatement.setString(2, subject.getText());
+            preparedStatement.setString(3, description.getText());
+            preparedStatement.setString(4, title.getText());
+            preparedStatement.setString(5, String.valueOf(publishedYear.getValue()));
+            preparedStatement.executeUpdate();
 
-            //preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthor_books);
-            //preparedStatement.setString(1, isbn.getText());
+            preparedStatement = (PreparedStatement) connection.prepareStatement(insertAuthors);
+            String author = "";
+            for (Object obj: authorName.getItems()){
+                author +=authorName.getValue();
+            }
+            System.out.println(author);
+            preparedStatement.setString(1,author);
+            preparedStatement.setString(2, isbn.getText());
+            preparedStatement.executeUpdate();
 
             preparedStatement = (PreparedStatement) connection.prepareStatement(insertBook);
-            preparedStatement.setInt(1, a);
-        }catch (Exception e) {
+            preparedStatement.setString(1, isbn.getText());
+            preparedStatement.executeUpdate();
 
+
+        }catch (Exception e) {
+            System.out.println(e);
         }
-        preparedStatement.executeUpdate();
 
         clearFields();
-
-        return "Success";
     }
 
     @FXML
     private void handleEventSave() throws SQLException {
         if (isbn.getText().isEmpty()||title.getText().isEmpty()||
-                publishedYear.getText().isEmpty()||authorName.getItems().isEmpty()||
+                authorName.getItems().isEmpty()||
                 description.getText().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -142,7 +151,11 @@ public class BooksFormController implements Initializable {
             alert.showAndWait();
         }
         else{
-            saveData();
+            saveDateOnce();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information!");
+            alert.setHeaderText("Successfully inserted");
+            alert.showAndWait();
         }
     }
 
@@ -151,6 +164,7 @@ public class BooksFormController implements Initializable {
         title.clear();
         description.clear();
         authorName.getItems().removeAll();
+        subject.clear();
         photo.setImage(new Image("images/demoBook.png"));
     }
 
@@ -192,7 +206,7 @@ public class BooksFormController implements Initializable {
         title.setText(txt);
     }
     public void setPublishedYear(String txt) {
-        publishedYear.setText(txt);
+        publishedYear.setValue(LocalDate.parse(txt));
     }
     public void setDescription(String txt) {
         description.setText(txt);

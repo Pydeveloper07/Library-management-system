@@ -66,12 +66,27 @@ public class WindowLoader {
         stage.setResizable(false);
         stage.show();
     }
+    public void loadAddNewLibrarianWindow(){
+        Stage stage = new Stage();
+        Parent root;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../form/addLibrarianForm/LibrarianForm.fxml"));
+            stage.setScene(new Scene(root, 360 , 400));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Add New Librarian");
+        stage.setResizable(false);
+        stage.show();
+    }
     public void loadPieChart(BorderPane borderPane){
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Available Books", 13),
-                        new PieChart.Data("Issued Books", 25),
-                        new PieChart.Data("Lost Books", 10));
+                        new PieChart.Data("Lost Books", 13),
+                        new PieChart.Data("Available Books", 25),
+                        new PieChart.Data("Issued Books", 10));
         final PieChart chart = new PieChart(pieChartData);
         borderPane.setCenter(chart);
     }
@@ -119,7 +134,7 @@ public class WindowLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root, 400 , 600));
+        stage.setScene(new Scene(root, 400 , 700));
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Add New Book");
         stage.setResizable(false);
