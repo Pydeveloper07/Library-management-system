@@ -61,7 +61,7 @@ public class FinedStudentsTableController implements Initializable {
             e.printStackTrace();
         }
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         col_book_id.setCellValueFactory(new PropertyValueFactory<>("book_id"));
         col_book_id.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -103,6 +103,8 @@ public class FinedStudentsTableController implements Initializable {
             String id = modelTable.getId();
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+
+
         }
         catch(SQLException ex){
             ex.printStackTrace();

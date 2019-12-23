@@ -4,12 +4,15 @@ import WindowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -40,7 +43,8 @@ public class BookTableController implements Initializable {
     private TableColumn<ModelBookTable,String> col_quantity;
     @FXML
     private TableColumn<ModelBookTable,String> col_available;
-
+    @FXML
+    private TextField filter;
     private DBConnector connector = new DBConnector().getConnector();
 
     ObservableList<ModelBookTable> oblist = FXCollections.observableArrayList();
@@ -55,10 +59,17 @@ public class BookTableController implements Initializable {
         windowLoader.loadAddNewBookWindow();
     }
 
+    @FXML
+    private void updateTable(){
+        oblist.removeAll();
+        table();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        table();
+    }
+    private void table(){
 
         try {
             connection = connector.getConnection();
@@ -111,7 +122,7 @@ public class BookTableController implements Initializable {
                 }
         );
 
-        col_author_name.setCellValueFactory(new PropertyValueFactory<>("author_name"));
+        col_author_name.setCellValueFactory(new PropertyValueFactory<>("author"));
         col_author_name.setCellFactory(TextFieldTableCell.forTableColumn());
         col_author_name.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ModelBookTable, String>>() {
@@ -224,6 +235,33 @@ public class BookTableController implements Initializable {
 
         table.setEditable(true);
         table.setItems(oblist);
+
+        FilteredList<ModelBookTable> filteredData = new FilteredList<>(oblist, b -> true);
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String upperCaseFilter = newValue.toUpperCase();
+
+                if (person.getIsbn().toUpperCase().indexOf(upperCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                } else if (person.getAuthor().toUpperCase().indexOf(upperCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                }
+                else if (person.getCategory().toUpperCase().indexOf(upperCaseFilter)!=-1)
+                    return true;
+                else if (person.getTitle().toUpperCase().indexOf(upperCaseFilter)!=-1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<ModelBookTable> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+
     }
 
     @FXML

@@ -44,7 +44,7 @@ public class BlockedStudentsTableController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             connection = connector.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM blocked_students");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT student_id, reason FROM blocked_students");
             while (resultSet.next()) {
                 oblist.add(new BlockedStudentsModelTable(
                         resultSet.getString("student_id"),
@@ -54,7 +54,7 @@ public class BlockedStudentsTableController implements Initializable {
             e.printStackTrace();
         }
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         col_reason.setCellValueFactory(new PropertyValueFactory<>("reason"));
         col_reason.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -83,11 +83,21 @@ public class BlockedStudentsTableController implements Initializable {
         table.setItems(sortedData);
     }
     @FXML
-    public void deleteUserTable(){
+    public void unblock(){
+        BlockedStudentsModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM blocked_students WHERE student_id=?");
+            String id = modelTable.getId();
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
 
-//        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
-//                t.getTablePosition().getRow())  ) ;
-//        //remove selected item from the table list
-//        data.remove(currentPerson);
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 }

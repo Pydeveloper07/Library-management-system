@@ -52,9 +52,18 @@ public class LibrariansTableController implements Initializable {
     PreparedStatement preparedStatement;
     Connection connection;
 
+    @FXML
+    private void updateTable(){
+        oblist.removeAll();
+        table();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
+        table();
+    }
+    private void table(){
+    try {
             connection = connector.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery(
                     "SELECT librarian_id, first_name, last_name, contact_number, email FROM librarian");
@@ -213,6 +222,11 @@ public class LibrariansTableController implements Initializable {
             String id = modelTable.getId();
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
         }
         catch(SQLException ex){
             ex.printStackTrace();

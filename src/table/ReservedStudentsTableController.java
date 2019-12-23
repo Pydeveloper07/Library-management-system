@@ -95,11 +95,21 @@ public class ReservedStudentsTableController implements Initializable {
         table.setItems(sortedData);
     }
     @FXML
-    public void deleteUserTable(){
+    public void removeFromReservedList(){
+        ReservedStudentsModelTable modelTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM waiting_list WHERE student_id=?");
+            String id = modelTable.getId();
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
 
-//        ModelTable currentPerson = (ModelTable) ((ModelTable) t.getTableView().getItems().get(
-//                t.getTablePosition().getRow())  ) ;
-//        //remove selected item from the table list
-//        data.remove(currentPerson);
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 }

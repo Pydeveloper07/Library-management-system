@@ -3,11 +3,14 @@ package table;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -30,7 +33,8 @@ public class IssuedBookTableController implements Initializable {
     private TableColumn<ModelIssuedBookTable,String> col_issued_date;
     @FXML
     private TableColumn<ModelIssuedBookTable,String> col_due_date;
-
+    @FXML
+    private TextField filter;
     private DBConnector connector = new DBConnector().getConnector();
 
     ObservableList<ModelIssuedBookTable> oblist = FXCollections.observableArrayList();
@@ -70,5 +74,29 @@ public class IssuedBookTableController implements Initializable {
 
         table.setEditable(true);
         table.setItems(oblist);
+
+
+        FilteredList<ModelIssuedBookTable> filteredData = new FilteredList<>(oblist, b -> true);
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String upperCaseFilter = newValue.toUpperCase();
+
+                if (person.getIsbn().toUpperCase().indexOf(upperCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                } else if (person.getStudent_id().toUpperCase().indexOf(upperCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                }
+                else
+                    return false;
+            });
+        });
+
+        SortedList<ModelIssuedBookTable> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+
     }
 }

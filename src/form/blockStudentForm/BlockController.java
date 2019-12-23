@@ -2,6 +2,7 @@ package form.blockStudentForm;
 
 import dataBase.DBConnector;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -40,9 +41,14 @@ public class BlockController {
         try{
             Connection connection = connector.getConnection();
             PreparedStatement p1 = connection.prepareStatement("INSERT INTO blocked_students VALUES(?,?)");
-            p1.setString(1, userId);
+            p1.setString(1, student_id.getText());
             p1.setString(2, block_reason.getText());
             p1.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information!");
+            alert.setHeaderText("Successfully Blocked!");
+            alert.showAndWait();
+            ((Stage)student_id.getScene().getWindow()).close();
         }
         catch(SQLException ex){
             ex.printStackTrace();

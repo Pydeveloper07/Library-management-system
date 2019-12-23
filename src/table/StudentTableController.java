@@ -38,10 +38,7 @@ public class StudentTableController implements Initializable {
     @FXML
     private TextField filter;
     private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
-    @FXML
-    private void addNewUserWindow(){
-        windowLoader.loadAddNewUserWindow();
-    }
+
 
     private DBConnector connector = new DBConnector().getConnector();
 
@@ -50,8 +47,16 @@ public class StudentTableController implements Initializable {
     PreparedStatement preparedStatement;
     Connection connection;
 
+    @FXML
+    private void addNewUserWindow(){
+        windowLoader.loadAddNewUserWindow();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        table();
+    }
+    private void table(){
         try {
             connection = connector.getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM students");
@@ -228,6 +233,12 @@ public class StudentTableController implements Initializable {
         SortedList<ModelTable> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
+    }
+
+    @FXML
+    private void updateTable(){
+        oblist.removeAll();
+        table();
     }
 
     @FXML

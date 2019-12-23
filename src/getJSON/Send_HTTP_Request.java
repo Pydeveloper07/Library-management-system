@@ -57,7 +57,7 @@ public class Send_HTTP_Request {
 
             // Get Title
             title = volumeInfo.getString("title");
-            if (title.length() > 30) title = title.substring(0, 26).concat("...");
+            if (title.length() > 60) title = title.substring(0, 57).concat("...");
             // Get Authors[]
             authors = new String[authorsJSON.length()];
             for(int i=0; i < authors.length; i++) {

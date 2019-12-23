@@ -11,55 +11,55 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="table.IssuedBookTableController">
-   <center>
-       <TableView fx:id="table" prefHeight="503.0" prefWidth="872.0" stylesheets="@Table.css">
-           <columns>
-               <TableColumn fx:id="col_isbn" prefWidth="75.0" text="ISBN" />
-               <TableColumn fx:id="col_student_id" prefWidth="75.0" text="Student ID" />
-               <TableColumn fx:id="col_issued_date" prefWidth="75.0" text="Issued Date" />
-               <TableColumn fx:id="col_due_date" prefWidth="75.0" text="Due Date" />
-           </columns>
-           <columnResizePolicy>
-               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-           </columnResizePolicy>
-           <BorderPane.margin>
-               <Insets left="10.0" right="10.0" />
-           </BorderPane.margin>
-       </TableView>
-   </center>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <top>
-       <HBox alignment="TOP_CENTER" prefHeight="40.0" BorderPane.alignment="CENTER">
-           <children>
-               <Label prefHeight="32.0" prefWidth="58.0" styleClass="window-title" stylesheets="@Table.css" text="Search:">
-                   <font>
-                       <Font size="17.0" />
-                   </font>
-                   <HBox.margin>
-                       <Insets right="5.0" />
-                   </HBox.margin>
-               </Label>
-               <TextField fx:id="filter" prefHeight="32.0" prefWidth="506.0">
-                   <HBox.margin>
-                       <Insets />
-                   </HBox.margin>
-               </TextField>
-               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="bevel-grey" stylesheets="@Table.css" text="Returned">
-                   <HBox.margin>
-                       <Insets left="5.0" right="5.0" />
-                   </HBox.margin>
-               </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="bevel-grey" stylesheets="@Table.css" text="Lost">
-               <HBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </HBox.margin>
-            </Button>
-           </children>
-         <padding>
-            <Insets top="2.0" />
-         </padding>
-       </HBox>
-   </top>
+    <center>
+        <TableView fx:id="table" prefHeight="503.0" prefWidth="872.0" stylesheets="@Table.css">
+            <columns>
+                <TableColumn fx:id="col_isbn" prefWidth="75.0" text="ISBN" />
+                <TableColumn fx:id="col_student_id" prefWidth="75.0" text="Student ID" />
+                <TableColumn fx:id="col_issued_date" prefWidth="75.0" text="Issued Date" />
+                <TableColumn fx:id="col_due_date" prefWidth="75.0" text="Due Date" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <BorderPane.margin>
+                <Insets left="10.0" right="10.0" />
+            </BorderPane.margin>
+        </TableView>
+    </center>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+    <top>
+        <HBox alignment="TOP_CENTER" prefHeight="40.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="32.0" prefWidth="75.0" styleClass="window-title" stylesheets="@Table.css" text="Search:">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets right="5.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="filter" prefHeight="32.0" prefWidth="506.0">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </TextField>
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="bevel-grey" stylesheets="@Table.css" text="Returned">
+                    <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="bevel-grey" stylesheets="@Table.css" text="Lost">
+                    <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <padding>
+                <Insets top="2.0" />
+            </padding>
+        </HBox>
+    </top>
 </BorderPane>
