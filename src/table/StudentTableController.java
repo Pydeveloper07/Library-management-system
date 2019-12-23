@@ -1,6 +1,6 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
 import form.blockStudentForm.BlockController;
 import form.chargeStudentForm.Controller;

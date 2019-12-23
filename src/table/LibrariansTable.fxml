@@ -57,6 +57,11 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </Button>
+                <Button mnemonicParsing="false" onAction="#refreshTable" styleClass="bevel-grey" stylesheets="@Table.css" text="Refresh">
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </Button>
             </children>
             <padding>
                 <Insets top="2.0" />

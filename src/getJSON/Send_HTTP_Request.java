@@ -21,6 +21,7 @@ public class Send_HTTP_Request {
     private static String imageLink, isbn;
 
     public void call_me(String isbn, BooksFormController currentBookAdder) throws Exception {
+        isbn = isbn.replace("-","");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Loading...");
         alert.setHeaderText("Loading Book Details");
@@ -29,6 +30,10 @@ public class Send_HTTP_Request {
         Window alertWindow = alert.getDialogPane().getScene().getWindow();
         alertWindow.setOnCloseRequest(event -> alertWindow.hide());
         alert.show();
+        if (isbn.length() < 10) {
+            alert.setContentText("Type correct ISBN and try again!");
+            return;
+        }
         String url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -47,21 +52,29 @@ public class Send_HTTP_Request {
         //Read JSON response and print
         JSONObject myResponse = new JSONObject(response.toString());
 
-        boolean found = myResponse.getInt("totalItems") > 0;
-        if (found && isbn.length() >= 10) {
+        boolean found = responseCode < 400 && myResponse.getInt("totalItems") > 0;
+        if (found) {
             JSONObject item = myResponse.getJSONArray("items").getJSONObject(0);
             JSONObject volumeInfo = item.getJSONObject("volumeInfo");
-            JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
             JSONArray industryIdentifiers = volumeInfo.getJSONArray("industryIdentifiers");
-            JSONArray categoriesJSON = volumeInfo.getJSONArray("categories");
 
             // Get Title
             title = volumeInfo.getString("title");
-            if (title.length() > 60) title = title.substring(0, 57).concat("...");
+            if (title.length() > 30) title = title.substring(0, 27).concat("...");
             // Get Authors[]
-            authors = new String[authorsJSON.length()];
-            for(int i=0; i < authors.length; i++) {
-                authors[i] = authorsJSON.optString(i);
+            String author = "";
+            try {
+                JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
+                authors = new String[authorsJSON.length()];
+
+                for(int i=0; i < authors.length; i++) {
+                    authors[i] = authorsJSON.optString(i);
+                }
+                author = authors[0];
+                for (int i = 1; i < authors.length; i++) author = author + (", " + authors[i]);
+            }
+            catch (Exception e) {
+                author = "No authors";
             }
             // Get Publisher
             try{
@@ -92,29 +105,31 @@ public class Send_HTTP_Request {
                     isbn = current.getString("identifier");
                 }
             }
-            // Get Page Count
-//            pageCount = volumeInfo.getInt("pageCount");
             // Get Categories
-            category = categoriesJSON.optString(0);
-            if (category.length() > 30) category = category.substring(0, 26).concat("...");
+            try {
+                JSONArray categoriesJSON = volumeInfo.getJSONArray("categories");
+                category = categoriesJSON.optString(0);
+                if (category.length() > 30) category = category.substring(0, 26).concat("...");
+            }
+            catch (Exception e) {
+                category = "No categories";
+            }
             // Get Book Cover Photo
-            imageLink = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
-            // Get Language
-//            language = volumeInfo.getString("language").toUpperCase();
-            // Get Info Link
-//            infoLink = volumeInfo.getString("infoLink");
-
-            IMGDownloader object = new IMGDownloader(isbn, imageLink, currentBookAdder);
-            object.start();
+            IMGDownloader object = new IMGDownloader();
+            try {
+                imageLink = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
+                object = new IMGDownloader(isbn, imageLink, currentBookAdder);
+                object.start();
+            }
+            catch (Exception e) {
+                alert.setContentText("No Photo Avaiable");
+            }
             currentBookAdder.setIsbn(isbn);
             currentBookAdder.setTitle(title);
             currentBookAdder.setSubject(category);
             currentBookAdder.setPublishedYear(publishedDate);
-            String author = authors[0];
-            for (int i = 1; i < authors.length; i++) author = author + (", " + authors[i]);
             currentBookAdder.addAuthor(author);
             currentBookAdder.setDescription(description);
-
             while (object.isAlive());
             alertWindow.hide();
         }

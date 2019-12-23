@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.sql.*;
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 
 public class LoginPageController {
     private double xOffSet;

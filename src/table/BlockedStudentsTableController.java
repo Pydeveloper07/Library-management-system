@@ -1,6 +1,6 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

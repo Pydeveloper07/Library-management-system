@@ -1,6 +1,6 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,7 +44,6 @@ public class LibrariansTableController implements Initializable {
         windowLoader.loadAddNewLibrarianWindow();
     }
 
-
     private DBConnector connector = new DBConnector().getConnector();
 
     ObservableList<LibrariansModelTable> oblist = FXCollections.observableArrayList();
@@ -53,9 +52,14 @@ public class LibrariansTableController implements Initializable {
     Connection connection;
 
     @FXML
-    private void updateTable(){
+    public void refreshTable(){
+
+        table.getSelectionModel().clearSelection();
+        table.getItems().removeAll();
+        oblist.clear();
         oblist.removeAll();
         table();
+
     }
 
     @Override

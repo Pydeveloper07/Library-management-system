@@ -1,6 +1,6 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +12,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -60,16 +59,13 @@ public class ReservedStudentsTableController implements Initializable {
             e.printStackTrace();
         }
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         col_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        col_isbn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         col_reservation_date.setCellValueFactory(new PropertyValueFactory<>("reservation_date"));
-        col_reservation_date.setCellFactory(TextFieldTableCell.forTableColumn());
 
         col_waiting_until.setCellValueFactory(new PropertyValueFactory<>("waiting_until"));
-        col_waiting_until.setCellFactory(TextFieldTableCell.forTableColumn());
 
         table.setEditable(false);
         table.setItems(oblist);

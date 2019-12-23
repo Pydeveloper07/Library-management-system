@@ -1,17 +1,14 @@
-package WindowLoader;
+package windowLoader;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mainPage.MainPageAdminController;
@@ -43,6 +40,21 @@ public class WindowLoader {
         }
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Block Student");
+        stage.setResizable(false);
+        stage.show();
+    }
+    public void loadIssueBookForm(){
+        Stage stage = new Stage();
+        Parent root;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../form/issuedDateBook/IssuedForm.fxml"));
+            stage.setScene(new Scene(root, 320 , 318));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Issue Book");
         stage.setResizable(false);
         stage.show();
     }
@@ -197,6 +209,22 @@ public class WindowLoader {
         }
         stage.setScene(new Scene(root, 468 , 388));
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
+
+    public void loadBookInfoWindow(){
+        Stage stage = new Stage();
+        Parent root;
+        try{
+            root = FXMLLoader.load(getClass().getResource("../bookInfo/bookInfo.fxml"));
+            stage.setScene(new Scene(root, 600 , 400));
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("Book Info");
+        stage.setResizable(false);
         stage.show();
     }
 }

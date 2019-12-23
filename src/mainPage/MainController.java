@@ -1,6 +1,6 @@
 package mainPage;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,8 +66,9 @@ public class MainController {
     }
     public void initializeStudentHome(BorderPane pane){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/Studen   tHomePage.fxml"));
-            pane.setTop(fxmlLoader.load());
+            FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("../homePage/StudentHomePage.fxml"));
+            pane.setCenter(fxmlLoader2.load());
+            pane.setTop(null);
         }
         catch(Exception ex){
             ex.printStackTrace();
@@ -77,6 +78,16 @@ public class MainController {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/LibrariansTable.fxml"));
             pane.setCenter(fxmlLoader.load());
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void initializeStudentBookTable(BorderPane pane){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/StudentBookTable.fxml"));
+            pane.setCenter(fxmlLoader.load());
+            pane.setTop(null);
         }
         catch(Exception ex){
             ex.printStackTrace();

@@ -4,6 +4,7 @@ import dataBase.DBConnector;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -15,11 +16,11 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable {
 
     @FXML
-    Label totalBooks;
+    Text totalBooks;
     @FXML
-    Label totalIssued;
+    Text totalIssued;
     @FXML
-    Label totalLost;
+    Text totalLost;
 
     private DBConnector connector = new DBConnector().getConnector();
     PreparedStatement preparedStatement;
@@ -27,8 +28,8 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        totalBooks.setText("asd"+getNumberOfBooks());
         totalBooks.setText(""+getNumberOfBooks());
+        totalIssued.setText(""+getNumberOfordered());
         totalLost.setText(""+getNumberOfLostBooks());
     }
 
@@ -49,6 +50,22 @@ public class HomePageController implements Initializable {
         }
         return numberOfBooks;
     }
+
+    private int getNumberOfordered(){
+        int numberOfLostBooks = 2;
+        try{
+            connection = connector.getConnection();
+            PreparedStatement p = connection.prepareStatement("SELECT * FROM ordered_books");
+            ResultSet resultSet = p.executeQuery();
+            resultSet.last();
+            numberOfLostBooks = resultSet.getRow();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return numberOfLostBooks;
+    }
+
     private int getNumberOfLostBooks(){
         int numberOfLostBooks = 0;
         try{

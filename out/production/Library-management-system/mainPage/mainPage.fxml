@@ -149,66 +149,6 @@
                         <BorderPane fx:id="librariansBorderPane" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </GridPane>
-                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
-                           <top>
-                              <HBox alignment="CENTER" prefHeight="91.0" prefWidth="814.0" spacing="50.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="22000" textFill="#2a73ff">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Total Books">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="1500" textFill="#26bfbc">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="totalIssued" text="Total Issued">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="1000" textFill="#fa5f7e">
-                                             <font>
-                                                <Font name="System Bold" size="26.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="totalLostBooks" text="Total Lost Books">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </top>
-                        </BorderPane>
-                     </children>
-                  </GridPane>
                   <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -266,6 +206,66 @@
                                  </children>
                               </GridPane>
                            </top></BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <HBox alignment="CENTER" prefHeight="91.0" prefWidth="814.0" spacing="50.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="163" textFill="#2a73ff">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Total Books">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="2" textFill="#26bfbc">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalIssued" text="Total Issued">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="0" textFill="#fa5f7e">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalLostBooks" text="Total Lost Books">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </top>
+                        </BorderPane>
                      </children>
                   </GridPane>
                </children>

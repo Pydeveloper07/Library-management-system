@@ -1,6 +1,9 @@
 package getJSON;
 
 import form.addBooksForm.BooksFormController;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Window;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -11,6 +14,7 @@ public class IMGDownloader extends Thread {
     private String isbn;
     private String imageLink;
     private BooksFormController bookForm;
+    IMGDownloader () {}
     IMGDownloader (String isbn, String imageLink, BooksFormController currentBookAdder) {
         this.isbn = isbn;
         this.imageLink = imageLink;
@@ -33,9 +37,28 @@ public class IMGDownloader extends Thread {
 
             is.close();
             os.close();
-
-            bookForm.setPhoto("images/bookPhoto/" + isbn + ".jpg");
         } catch (Exception e) {
+            bookForm.setPhoto("images/demoBook.png");
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Downloading Error");
+            alert.setHeaderText("Failed to download");
+            alert.setContentText("Please try again or insert manually");
+            alert.show();
+        }
+        try {
+            bookForm.setPhoto("images/bookPhoto/" + isbn + ".jpg");
+        }
+        catch (Exception e) {
+            bookForm.setPhoto("images/demoBook.png");
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Downloading Error");
+            alert.setHeaderText("Failed to set Photo");
+            alert.setContentText("Please try again.");
+            alert.show();
         }
     }
 }

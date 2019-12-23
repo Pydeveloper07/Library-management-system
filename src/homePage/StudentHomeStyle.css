@@ -1,10 +1,15 @@
 #mainWindow
 {
--fx-background-color: #ccccff;
+    -fx-background-image: url("../images/back.jpeg");
+    -fx-background-size: cover, auto;
 }
 #label
 {
-    -fx-font-family: "Lucida Fax";
+    -fx-font-family: "Berlin Sans FB Demi";
     -fx-font-size: 15;
-    -fx-text-fill: #19648a
+    -fx-text-fill: #19648a;
+}
+.textDescription {
+	-fx-font-family: "Berlin Sans FB";
+	-fx-font-size: 14px;
 }

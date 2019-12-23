@@ -1,12 +1,11 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -103,7 +102,12 @@ public class FinedStudentsTableController implements Initializable {
             String id = modelTable.getId();
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
 
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
 
         }
         catch(SQLException ex){

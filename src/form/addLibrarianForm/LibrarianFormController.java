@@ -4,6 +4,7 @@ import dataBase.DBConnector;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import table.LibrariansTableController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +29,6 @@ public class LibrarianFormController {
 
     PreparedStatement preparedStatement;
     Connection connection;
-
 
     public LibrarianFormController() throws SQLException {
         connection = connector.getConnection();

@@ -1,25 +1,16 @@
 package mainPage;
 
-import WindowLoader.WindowLoader;
+import windowLoader.WindowLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import loginPage.UserSession;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
@@ -60,6 +51,8 @@ public class MainPageUserController {
     @FXML
     private BorderPane studentsBorderPane;
     @FXML
+    private BorderPane homeBorderPane;
+    @FXML
     private Circle avatar;
     @FXML
     private Label labelUserName;
@@ -69,8 +62,8 @@ public class MainPageUserController {
     public void initialize() throws MalformedURLException {
 
         mainController.loadUserDetails(labelUserName, avatar);
-        mainController.initializeBookTable(booksBorderPane);
-        mainController.initializeStudentHome(studentsBorderPane);
+        mainController.initializeStudentBookTable(booksBorderPane);
+        mainController.initializeStudentHome(homeBorderPane);
         windowLoader.loadLineChart(statisticsPane);
         buttons.add(homeMenuItem);
         buttons.add(librariansMenuItem);

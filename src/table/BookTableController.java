@@ -1,7 +1,9 @@
 package table;
 
-import WindowLoader.WindowLoader;
+import bookInfo.BookInfoController;
+import windowLoader.WindowLoader;
 import dataBase.DBConnector;
+import form.issuedDateBook.IssuedFormController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -9,7 +11,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 
 public class BookTableController implements Initializable {
 
+    private IssuedFormController issueController = new IssuedFormController();
     @FXML
     private TableView<ModelBookTable> table;
     @FXML
@@ -53,16 +55,20 @@ public class BookTableController implements Initializable {
     Connection connection;
     private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
 
+    @FXML
+    public void refresh(){
+
+        table.getSelectionModel().clearSelection();
+        table.getItems().removeAll();
+        oblist.clear();
+        oblist.removeAll();
+        table();
+
+    }
 
     @FXML
     private void addNewBook(){
         windowLoader.loadAddNewBookWindow();
-    }
-
-    @FXML
-    private void updateTable(){
-        oblist.removeAll();
-        table();
     }
 
     @Override
@@ -87,8 +93,9 @@ public class BookTableController implements Initializable {
                         resultSet.getString("published_date"),
                         resultSet.getString("quantity"),
                         resultSet.getString("available")
-                        ));
+                ));
             }
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -265,6 +272,19 @@ public class BookTableController implements Initializable {
     }
 
     @FXML
+    public void getBookInfo(){
+        ModelBookTable modelBookTable = table.getSelectionModel().getSelectedItem();
+        BookInfoController.setAuthor(modelBookTable.getAuthor());
+        BookInfoController.setCategory(modelBookTable.getCategory());
+        BookInfoController.setDescription(modelBookTable.getDescrip());
+        BookInfoController.setIsbn(modelBookTable.getIsbn());
+        BookInfoController.setPublishedYear(modelBookTable.getPublished_date());
+        BookInfoController.setTitle(modelBookTable.getTitle());
+        BookInfoController.setSpinner(modelBookTable.getAvailable());
+        windowLoader.loadBookInfoWindow();
+    }
+
+    @FXML
     public void deleteBook(){
         ModelBookTable modelTable = table.getSelectionModel().getSelectedItem();
         try{
@@ -275,11 +295,17 @@ public class BookTableController implements Initializable {
 
             oblist.remove(table.getSelectionModel().getSelectedIndex());
             table.getSelectionModel().clearSelection();
-//            table.getItems().clear();
+            table.getItems().clear();
             table.getItems().addAll(oblist);
         }
         catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+    @FXML
+    public void issue_book(){
+        ModelBookTable modelTable = table.getSelectionModel().getSelectedItem();
+        issueController.setBook_title(modelTable.getTitle(), modelTable.getIsbn());
+        windowLoader.loadIssueBookForm();
     }
 }

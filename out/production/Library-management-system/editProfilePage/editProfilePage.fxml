@@ -10,66 +10,66 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane id="mainwindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="468.0" stylesheets="@editProfilePage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editProfilePage.Controller">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="183.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="245.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Label id="editTitle" stylesheets="@editProfilePage.css" text="Edit Profile" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Unique ID" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Last Name" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Current Password" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Repeat New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField fx:id="username" editable="false" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="firstname" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="lastname" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <PasswordField fx:id="oldpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <PasswordField fx:id="newpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <PasswordField fx:id="newpasswordagain" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Button minWidth="57.0" mnemonicParsing="false" onAction="#saveBtnHandler" prefHeight="31.0" prefWidth="57.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
-         <GridPane.margin>
-            <Insets right="100.0" />
-         </GridPane.margin>
-      </Button>
-      <Button minWidth="80.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="31.0" prefWidth="80.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-   </children>
-   <padding>
-      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-   </padding>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="183.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="245.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label id="editTitle" stylesheets="@editProfilePage.css" text="Edit Profile" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Unique ID" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Last Name" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Current Password" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Repeat New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Label>
+        <TextField fx:id="username" editable="false" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="firstname" editable="false" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="lastname" editable="false" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <PasswordField fx:id="oldpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <PasswordField fx:id="newpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <PasswordField fx:id="newpasswordagain" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Button minWidth="57.0" mnemonicParsing="false" onAction="#saveBtnHandler" prefHeight="31.0" prefWidth="57.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+            <GridPane.margin>
+                <Insets right="100.0" />
+            </GridPane.margin>
+        </Button>
+        <Button minWidth="80.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="31.0" prefWidth="80.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+    </padding>
 </GridPane>

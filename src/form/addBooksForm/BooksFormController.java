@@ -186,7 +186,6 @@ public class BooksFormController implements Initializable {
     }
 
     public void setPublishedYear(String txt) {
-        System.out.println(txt);
         try{
             publishedYear.setValue(LocalDate.parse(txt));
         }

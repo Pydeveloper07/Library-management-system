@@ -36,11 +36,12 @@ public class IssuedBookTableController implements Initializable {
     @FXML
     private TextField filter;
     private DBConnector connector = new DBConnector().getConnector();
-
+    private static int count=0;
     ObservableList<ModelIssuedBookTable> oblist = FXCollections.observableArrayList();
 
     PreparedStatement preparedStatement;
     Connection connection;
+
 
 
     @Override
@@ -56,6 +57,7 @@ public class IssuedBookTableController implements Initializable {
                         resultSet.getString("student_id"),
                         resultSet.getString("issued_date"),
                         resultSet.getString("due_date")));
+                        count++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,13 +66,10 @@ public class IssuedBookTableController implements Initializable {
         col_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
 
         col_student_id.setCellValueFactory(new PropertyValueFactory<>("student_id"));
-        col_student_id.setCellFactory(TextFieldTableCell.forTableColumn());
 
         col_issued_date.setCellValueFactory(new PropertyValueFactory<>("issued_date"));
-        col_issued_date.setCellFactory(TextFieldTableCell.forTableColumn());
 
         col_due_date.setCellValueFactory(new PropertyValueFactory<>("due_date"));
-        col_due_date.setCellFactory(TextFieldTableCell.forTableColumn());
 
         table.setEditable(true);
         table.setItems(oblist);
@@ -99,4 +98,51 @@ public class IssuedBookTableController implements Initializable {
         table.setItems(sortedData);
 
     }
+    @FXML
+    private void delete(){
+        ModelIssuedBookTable modelIssuedBookTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM ordered_books WHERE isbn=?");
+            String isbn = modelIssuedBookTable.getIsbn();
+            preparedStatement.setString(1, isbn);
+            preparedStatement.executeUpdate();
+
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+    @FXML
+    private void addLost(){
+        ModelIssuedBookTable modelIssuedBookTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement p = connection.prepareStatement("SELECT book_id FROM book WHERE isbn=?");
+            p.setString(1, modelIssuedBookTable.getIsbn());
+            ResultSet r = p.executeQuery();
+            r.next();
+            System.out.println(r.getString("book_id"));
+
+            String students = "INSERT INTO lost_books ( book_id, isbn,student_id,lost_date) VALUES (?,?,?,?)";
+            preparedStatement = (PreparedStatement) connection.prepareStatement(students);
+            preparedStatement.setString(1, String.valueOf(count));
+            preparedStatement.setString(2, modelIssuedBookTable.getIsbn());
+            preparedStatement.setString(3, modelIssuedBookTable.getStudent_id());
+            preparedStatement.setString(4, modelIssuedBookTable.getIssued_date());
+            preparedStatement.executeUpdate();
+
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+            table.getItems().clear();
+            table.getItems().addAll(oblist);
+            count--;
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
 }
