@@ -108,12 +108,12 @@
                         <Font name="Bodoni MT" size="20.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="104.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Edit Profile">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="104.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Edit Profile">
                      <HBox.margin>
                         <Insets right="10.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Log Out">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="30.0" prefWidth="94.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Log Out">
                      <HBox.margin>
                         <Insets right="10.0" top="15.0" />
                      </HBox.margin>

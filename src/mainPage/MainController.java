@@ -1,5 +1,6 @@
 package mainPage;
 
+import WindowLoader.WindowLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class MainController {
     private UserSession userSession = UserSession.getInstance();
     private MainController mainController = null;
+    private WindowLoader windowLoader = new WindowLoader().getWindowLoader();
     public MainController getMainController(){
         if(mainController == null){
             mainController = new MainController();
@@ -53,7 +55,6 @@ public class MainController {
             ex.printStackTrace();
         }
     }
-
     public void initializeHome(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/homePage.fxml"));
@@ -63,18 +64,15 @@ public class MainController {
             ex.printStackTrace();
         }
     }
-
     public void initializeStudentHome(BorderPane pane){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/StudentHomePage.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../homePage/Studen   tHomePage.fxml"));
             pane.setTop(fxmlLoader.load());
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
     }
-
-
     public void initializeLibrariansTable(BorderPane pane){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../table/LibrariansTable.fxml"));
@@ -190,5 +188,11 @@ public class MainController {
         } catch (IOException e) {
             System.out.println("Error: " + e);
         }
+    }
+    public void logOut(){
+        windowLoader.loadLoginWindow();
+    }
+    public void loadEditProfileWindow(){
+        windowLoader.loadEditProfileWindow();
     }
 }

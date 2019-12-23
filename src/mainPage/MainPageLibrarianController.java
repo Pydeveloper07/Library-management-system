@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import loginPage.UserSession;
 
 import javax.imageio.ImageIO;
@@ -85,6 +86,15 @@ public class MainPageLibrarianController {
         librariansMenuItem.setManaged(false);
         librariansMenuItem.setVisible(false);
         librariansPane.setVisible(false);
+    }
+    @FXML
+    public void logOut(){
+        ((Stage)homeMenuItem.getScene().getWindow()).close();
+        mainController.logOut();
+    }
+    @FXML
+    public void editProfile(){
+//        mainController.loadEditProfileWindow();
     }
     @FXML
     public void setHomePane(MouseEvent event){
