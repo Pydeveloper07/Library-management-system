@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Window;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -63,11 +64,26 @@ public class Send_HTTP_Request {
                 authors[i] = authorsJSON.optString(i);
             }
             // Get Publisher
-            publisher = volumeInfo.getString("publisher");
+            try{
+                publisher = volumeInfo.getString("publisher");
+            }
+            catch(JSONException ex){
+                publisher = "Unknown";
+            }
             // Get Published Date
-            publishedDate = volumeInfo.getString("publishedDate");
+            try{
+                publishedDate = volumeInfo.getString("publishedDate");
+            }
+            catch(JSONException ex){
+                publishedDate = "2000-01-01";
+            }
             // Get Description
-            description = volumeInfo.getString("description");
+            try{
+                description = volumeInfo.getString("description");
+            }
+            catch(JSONException ex){
+                description = "No available Description";
+            }
             if (description.length() > 300) description = description.substring(0, 296).concat("...");
             // Change ISBN to ISBN13 if possible
             for (int i = 0; i < industryIdentifiers.length(); i++) {
@@ -77,16 +93,16 @@ public class Send_HTTP_Request {
                 }
             }
             // Get Page Count
-            pageCount = volumeInfo.getInt("pageCount");
+//            pageCount = volumeInfo.getInt("pageCount");
             // Get Categories
             category = categoriesJSON.optString(0);
             if (category.length() > 30) category = category.substring(0, 26).concat("...");
             // Get Book Cover Photo
             imageLink = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
             // Get Language
-            language = volumeInfo.getString("language").toUpperCase();
+//            language = volumeInfo.getString("language").toUpperCase();
             // Get Info Link
-            infoLink = volumeInfo.getString("infoLink");
+//            infoLink = volumeInfo.getString("infoLink");
 
             IMGDownloader object = new IMGDownloader(isbn, imageLink, currentBookAdder);
             object.start();

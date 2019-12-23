@@ -225,4 +225,23 @@ public class BookTableController implements Initializable {
         table.setEditable(true);
         table.setItems(oblist);
     }
+
+    @FXML
+    public void deleteBook(){
+        ModelBookTable modelTable = table.getSelectionModel().getSelectedItem();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM book_group WHERE isbn=?");
+            String isbn = modelTable.getIsbn();
+            preparedStatement.setString(1, isbn);
+            preparedStatement.executeUpdate();
+
+            oblist.remove(table.getSelectionModel().getSelectedIndex());
+            table.getSelectionModel().clearSelection();
+//            table.getItems().clear();
+            table.getItems().addAll(oblist);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 }

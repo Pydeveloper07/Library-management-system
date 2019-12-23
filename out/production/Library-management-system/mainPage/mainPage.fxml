@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="1366.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1131.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <GridPane id="menuBackground" prefHeight="522.0" prefWidth="317.0" stylesheets="@window-style.css" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="201.59998168945313" minHeight="10.0" prefHeight="201.59998168945313" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="169.60001220703126" minHeight="10.0" prefHeight="71.19998779296876" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="169.60001220703126" minHeight="10.0" prefHeight="71.19998779296876" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="169.60001220703126" minHeight="10.0" prefHeight="71.19998779296876" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="labelUserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="243.0" styleClass="name" stylesheets="@window-style.css" text="Tukhtamurod Isroilov" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="317.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <children>
+                  <Button fx:id="homeMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setHomePane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Home">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="menu-items" />
+                        <String fx:value="menuHome" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="librariansMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setLibrariansPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Librarians">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="menu-items" />
+                        <String fx:value="menuLibrarian" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="studentsMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setStudentsPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Students">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="menu-items" />
+                        <String fx:value="menuStudent" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="booksMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setBooksPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Books">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="menu-items" />
+                        <String fx:value="menuBook" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="statisticsMenuItem" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#setStatisticsPane" prefHeight="50.0" prefWidth="316.0" stylesheets="@window-style.css" text="Statistics">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="menu-items" />
+                        <String fx:value="menuStatistics" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+            <Circle fx:id="avatar" fill="snow" onMousePressed="#setAvatar" pickOnBounds="true" radius="65.0" stroke="seagreen" strokeType="INSIDE" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="25.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Circle>
+         </children>
+      </GridPane>
+   </left>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="814.0" style="-fx-background-color: #00b300;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label id="top-label" fx:id="topLabel" alignment="CENTER" prefHeight="60.0" prefWidth="670.0" stylesheets="@window-style.css" text="HOME" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Bodoni MT" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editProfile" prefHeight="30.0" prefWidth="104.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Edit Profile">
+                     <HBox.margin>
+                        <Insets right="10.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="30.0" prefWidth="94.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="Log Out">
+                     <HBox.margin>
+                        <Insets right="10.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <GridPane fx:id="statisticsPane" style="-fx-background-color: white;" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="librariansPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="librariansBorderPane" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="homePane" style="-fx-background-color: white;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <HBox alignment="CENTER" prefHeight="91.0" prefWidth="814.0" spacing="50.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="22000" textFill="#2a73ff">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Total Books">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="1500" textFill="#26bfbc">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalIssued" text="Total Issued">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="1000" textFill="#fa5f7e">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalLostBooks" text="Total Lost Books">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="booksPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="booksBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane prefHeight="58.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="TOTAL BOOKS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initIssuedBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="ISSUED BOOKS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initLostBookTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="LOST BOOKS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                                 </children>
+                              </GridPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="studentsPane" style="-fx-background-color: #ccccb3;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <BorderPane fx:id="studentsBorderPane" prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane prefHeight="58.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="TOTAL STUDENTS" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initFinedStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="FINED STUDENTS" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initBlockedStudentsTable" prefHeight="118.0" prefWidth="197.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="BLOCKED STUDENTS" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#initReservedStudentsTable" prefHeight="118.0" prefWidth="218.0" styleClass="bevel-grey" stylesheets="@window-style.css" text="RESERVED STUDENTS" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                                 </children>
+                              </GridPane>
+                           </top></BorderPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </center>
+</fx:root>

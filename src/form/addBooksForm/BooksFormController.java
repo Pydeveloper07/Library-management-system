@@ -20,7 +20,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 public class BooksFormController implements Initializable {
@@ -183,7 +186,15 @@ public class BooksFormController implements Initializable {
     }
 
     public void setPublishedYear(String txt) {
-        publishedYear.setValue(LocalDate.parse(txt));
+        System.out.println(txt);
+        try{
+            publishedYear.setValue(LocalDate.parse(txt));
+        }
+        catch(DateTimeParseException ex){
+            if(txt.length() == 4){
+                publishedYear.setValue(LocalDate.parse(txt + "-01-01"));
+            }
+        }
     }
 
     public void setDescription(String txt) {

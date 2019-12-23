@@ -1,0 +1,76 @@
+@font-face{
+    src: url('fonts//BalooBhai-Regular.ttf');
+}
+@font-face{
+    src: url('fonts//Lobster-Regular.ttf');
+}
+@font-face{
+    src: url('fonts//Righteous-Regular.ttf');
+}
+@font-face{
+    src: url('fonts//FrederickatheGreat-Regular.ttf');
+}
+.main{
+    -fx-background-image: url("images/back3.jpg");
+}
+.top-panel{
+    -fx-background-color: rgb(235, 235, 235);
+}
+.close-button{
+    -fx-background-color: rgb(245, 28, 0);
+    -fx-font-size: 11pt;
+    -fx-text-fill: rgb(245, 28, 0);
+    -fx-background-radius: 100%;
+}
+.close-button:hover{
+    -fx-text-fill: rgb(0, 0, 0);
+}
+.min-button{
+    -fx-background-color: rgb(245, 179, 0);
+    -fx-font-size: 11pt;
+    -fx-text-fill: rgb(245, 179, 0);
+    -fx-background-radius: 100%;
+}
+.min-button:hover{
+    -fx-text-fill: rgb(0, 0, 0);
+}
+.log-in-title{
+    -fx-font-size: 22pt;
+    -fx-text-fill: rgb(0, 51, 153);
+    -fx-letter-space: 5px;
+    -fx-font-family: 'Baloo Bhai', cursive;
+}
+.pass-and-text-fields{
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius:50px;
+    -fx-font-family: 'Arial';
+    -fx-border-radius:50px;
+}
+.username-and-password{
+    -fx-font-size:14pt;
+    -fx-text-fill: rgb(0, 51, 153);
+    -fx-font-family: 'Baloo Bhai', cursive;
+}
+.log-in-button{
+    -fx-background-color: rgba(102, 179, 255);
+    -fx-border-color: rgb(102, 102, 204);
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-font-size: 13pt;
+    -fx-text-fill: rgba(0, 0, 0, 0.7);
+    -fx-font-family: 'Righteous', cursive;
+    -fx-cursor: hand;
+}
+
+.log-in-button:hover{
+    -fx-background-color: rgba(0, 0, 153);
+    -fx-text-fill: rgba(230, 247, 255);
+}
+.window-title{
+    -fx-font-size: 14pt;
+    -fx-text-fill: rgb(41, 41, 41);
+    -fx-font-family: 'Baloo Bhai', cursive;
+}
+.warn-label{
+    -fx-text-fill: red;
+}

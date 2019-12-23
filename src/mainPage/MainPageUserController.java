@@ -100,7 +100,7 @@ public class MainPageUserController {
     }
     @FXML
     public void editProfile(){
-//        mainController.loadEditProfileWindow();
+        mainController.loadEditProfileWindow();
     }
     @FXML
     public void setHomePane(MouseEvent event){
