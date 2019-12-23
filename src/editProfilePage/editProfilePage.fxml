@@ -5,97 +5,71 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editProfilePage.Controller">
+<GridPane id="mainwindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="468.0" stylesheets="@editProfilePage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editProfilePage.Controller">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="183.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="245.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane prefHeight="515.0" prefWidth="316.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="158.0" prefWidth="158.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="158.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="1.7976931348623157E308" valignment="TOP" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </GridPane.margin>
-               <image>
-                  
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="Username" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="username" alignment="CENTER" editable="false" focusTraversable="false" text="U1810203" GridPane.columnSpan="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="First Name" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <TextField fx:id="firstname" alignment="CENTER" layoutX="30.0" layoutY="220.0" text="Begzod" GridPane.columnSpan="2" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label layoutX="141.0" layoutY="246.0" text="Last Name" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <TextField fx:id="lastname" alignment="CENTER" layoutX="30.0" layoutY="264.0" text="Muxamedov" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="290.0" text="Old Password" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <PasswordField fx:id="oldpassword" alignment="CENTER" prefHeight="25.0" prefWidth="292.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="334.0" text="New Password" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="378.0" text="New Password Again" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
-            <PasswordField fx:id="newpassword" alignment="CENTER" layoutX="30.0" layoutY="352.0" prefHeight="25.0" prefWidth="292.0" promptText="Type your new Passwor" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="BASELINE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <PasswordField fx:id="newpasswordagain" alignment="CENTER" layoutX="30.0" layoutY="389.0" prefHeight="25.0" prefWidth="292.0" promptText="Confirm your new Password" GridPane.columnSpan="2" GridPane.rowIndex="12">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="25.0" prefWidth="85.0" text="Cancel" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets bottom="10.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
-            <Button contentDisplay="CENTER" layoutX="63.0" layoutY="498.0" mnemonicParsing="false" onAction="#saveBtnHandler" prefHeight="25.0" prefWidth="81.0" text="OK" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="13">
-               <GridPane.margin>
-                  <Insets bottom="10.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
+      <Label id="editTitle" stylesheets="@editProfilePage.css" text="Edit Profile" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Unique ID" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Last Name" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Current Password" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label id="label" alignment="CENTER_RIGHT" stylesheets="@editProfilePage.css" text="Repeat New Password" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="username" editable="false" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="firstname" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="lastname" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <PasswordField fx:id="oldpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <PasswordField fx:id="newpassword" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <PasswordField fx:id="newpasswordagain" stylesheets="@editProfilePage.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button minWidth="57.0" mnemonicParsing="false" onAction="#saveBtnHandler" prefHeight="31.0" prefWidth="57.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </Button>
+      <Button minWidth="80.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="31.0" prefWidth="80.0" styleClass="record-sales" stylesheets="@editProfilePage.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
    </children>
-</VBox>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</GridPane>

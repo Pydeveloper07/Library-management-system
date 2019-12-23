@@ -66,10 +66,10 @@
       </TextField>
       <Button mnemonicParsing="false" onAction="#handleEventSave" prefHeight="35.0" prefWidth="45.0" styleClass="record-sales" stylesheets="@ChargeStyle.css" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
-            <Insets left="45.0" />
+            <Insets left="25.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="35.0" prefWidth="55.0" styleClass="record-sales" stylesheets="@ChargeStyle.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+      <Button minWidth="70.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="35.0" prefWidth="70.0" styleClass="record-sales" stylesheets="@ChargeStyle.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets right="22.0" />
          </GridPane.margin>

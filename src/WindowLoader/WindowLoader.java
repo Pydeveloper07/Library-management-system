@@ -195,7 +195,7 @@ public class WindowLoader {
         catch(IOException ex){
             ex.printStackTrace();
         }
-        stage.setScene(new Scene(root, 316 , 525));
+        stage.setScene(new Scene(root, 468 , 388));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
